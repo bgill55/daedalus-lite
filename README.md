@@ -44,14 +44,14 @@ Daedalus-Lite gives you the **exact architecture** used by premium AI coding ass
 
 ## What you get
 
-||| Feature | What it means |
-||---------|---------------|
-|| **InMemory Router** | Routes to OpenAI, Anthropic, or local models (Ollama/LM Studio) with a unified response format |
-|| **REPL Shell** | Interactive terminal with `/help`, `/model`, `/clear`, `/exit` |
-|| **Zero Dependencies** | Only `commander` at runtime. That's it. |
-|| **Local AI Ready** | Works with Ollama, LM Studio — no internet required |
-|| **Rebrandable** | Change the name, colors, banner — it's yours |
-|| **Sellable** | MIT + Branded Commercial license. Ship it. |
+| Feature | What it means |
+|---------|---------------|
+| **InMemory Router** | Routes to OpenAI, Anthropic, or local models (Ollama/LM Studio) with a unified response format |
+| **REPL Shell** | Interactive terminal with `/help`, `/model`, `/clear`, `/exit` |
+| **Zero Dependencies** | Only `commander` at runtime. That's it. |
+| **Local AI Ready** | Works with Ollama, LM Studio — no internet required |
+| **Rebrandable** | Change the name, colors, banner — it's yours |
+| **Sellable** | MIT + Branded Commercial license. Ship it. |
 
 ## How it works
 
@@ -62,11 +62,11 @@ Daedalus-Lite gives you the **exact architecture** used by premium AI coding ass
 
 ## Pricing
 
-||| Tier | Price | What you get |
-||------|-------|-------------|
-|| **Starter** | $19 | Private GitHub template access + PDF manual + email support |
-|| **Pro** | $49 | Everything in Starter + pre-compiled binaries + custom theme & banner + priority support |
-|| **Enterprise** | $249 | Everything in Pro + 1-hour setup call + custom integrations + white-glove onboarding |
+| Tier | Price | What you get |
+|------|-------|-------------|
+| **Starter** | $19 | Private GitHub template access + PDF manual + email support |
+| **Pro** | $49 | Everything in Starter + pre-compiled binaries + custom theme & banner + priority support |
+| **Enterprise** | $249 | Everything in Pro + 1-hour setup call + custom integrations + white-glove onboarding |
 
 ## The Pitch
 
