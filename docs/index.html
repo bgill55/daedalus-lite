@@ -544,8 +544,80 @@
     </div>
   </section>
 
+  <!-- Live Demo -->
+  <section>
+    <div class="container">
+      <h2>See it in action</h2>
+      <p style="text-align:center;color:var(--text-light);margin-bottom:32px;max-width:600px;margin-left:auto;margin-right:auto;">
+        A fully functional REPL with built-in commands. Switch models on the fly. Clear history. All from a single terminal.
+      </p>
+      <div style="text-align:center;">
+        <img src="terminal-screenshot.png" alt="Daedalus-Lite REPL in action" style="max-width:100%;border-radius:12px;box-shadow:0 8px 32px var(--shadow);border:1px solid var(--card-border);" />
+      </div>
+      <p style="text-align:center;color:var(--text-light);margin-top:16px;font-size:0.9rem;">
+        The built-in REPL with /help, /model, /clear, and /exit commands.
+      </p>
+    </div>
+  </section>
+
+  <!-- Code Preview -->
+  <section>
+    <div class="container">
+      <h2>What's under the hood</h2>
+      <p style="text-align:center;color:var(--text-light);margin-bottom:32px;max-width:600px;margin-left:auto;margin-right:auto;">
+        ~300 lines of TypeScript. Middleware chain. Multi-model router. No magic.
+      </p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+        <div style="background:var(--white);border-radius:12px;border:1px solid var(--card-border);overflow:hidden;">
+          <div style="background:var(--code-bg);padding:12px 16px;font-size:0.8rem;color:var(--text-light);font-family:monospace;border-bottom:1px solid var(--card-border);">router.ts</div>
+          <pre style="padding:16px;font-size:0.8rem;line-height:1.6;overflow-x:auto;color:var(--text);background:var(--white);margin:0;"><code style="font-family:monospace;">// Route to OpenAI, Anthropic, or local models
+async dispatch(request: ModelRequest): Promise<ModelResponse> {
+  const model = request.model || this.config.defaultModel;
+
+  if (model.startsWith('gpt-') || model.startsWith('o1-')) {
+    return this.dispatchToOpenAI({ model, messages });
+  } else if (model.startsWith('claude-')) {
+    return this.dispatchToAnthropic({ model, messages });
+  } else {
+    return this.dispatchToLocal({ model, messages });
+  }
+}
+</code></pre>
+        </div>
+        <div style="background:var(--white);border-radius:12px;border:1px solid var(--card-border);overflow:hidden;">
+          <div style="background:var(--code-bg);padding:12px 16px;font-size:0.8rem;color:var(--text-light);font-family:monospace;border-bottom:1px solid var(--card-border);">middleware.ts</div>
+          <pre style="padding:16px;font-size:0.8rem;line-height:1.6;overflow-x:auto;color:var(--text);background:var(--white);margin:0;"><code style="font-family:monospace;">// Middleware chain - add logging, auth, rate limiting
+use(middleware: Middleware): void {
+  this.middleware.push(middleware);
+}
+
+// Error handling middleware
+export const errorHandlerMiddleware = async (
+  req: ModelRequest,
+  next: () => Promise<ModelResponse>
+): Promise<ModelResponse> => {
+  try {
+    return await next();
+  } catch (error) {
+    return {
+      choices: [{
+        message: { content: "Error: " + error.message }
+      }]
+    };
+  }
+};
+</code></pre>
+        </div>
+      </div>
+      <p style="text-align:center;color:var(--text-light);margin-top:24px;font-size:0.9rem;">
+        Full TypeScript source. ~300 lines. No magic. No bloat.
+      </p>
+    </div>
+  </section>
+
   <!-- Pricing -->
   <section id="pricing">
+
     <div class="container">
       <h2>Pricing</h2>
       <p style="text-align:center;color:var(--text-light);margin-bottom:8px;">One-time purchase. You own it forever.</p>
