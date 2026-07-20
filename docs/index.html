@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daedalus-Lite — Build & Sell Your Own AI Coding Assistant</title>
+  <meta name="description" content="Build your own AI coding assistant. Brand it. Sell it. Zero tracking. Zero dependencies. Zero permission." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #1E3A8A;
+      --accent: #F59E0B;
+      --bg: #F3F4F6;
+      --text: #111827;
+      --text-light: #6B7280;
+      --white: #ffffff;
+      --card-border: #E5E7EB;
+      --icon-bg: #EEF2FF;
+      --hero-from: #1E3A8A;
+      --hero-to: #0F2557;
+      --hero-text: #CBD5E1;
+      --code-bg: #E5E7EB;
+      --shadow: rgba(0,0,0,0.08);
+    }
+
+    [data-theme="dark"] {
+      --primary: #60A5FA;
+      --accent: #FBBF24;
+      --bg: #0F172A;
+      --text: #E2E8F0;
+      --text-light: #94A3B8;
+      --white: #1E293B;
+      --card-border: #334155;
+      --icon-bg: #1E3A5F;
+      --hero-from: #0F172A;
+      --hero-to: #020617;
+      --hero-text: #94A3B8;
+      --code-bg: #334155;
+      --shadow: rgba(0,0,0,0.3);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--hero-from) 0%, var(--hero-to) 100%);
+      color: white;
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: white;
+      max-width: 640px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
+    }
+
+    .hero .tagline {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: var(--accent);
+      color: #111827;
+      font-weight: 700;
+      padding: 14px 36px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+    }
+
+    .cta-secondary {
+      display: inline-block;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      border: 2px solid rgba(255,255,255,0.5);
+      padding: 12px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 12px;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .cta-secondary:hover {
+      background: rgba(255,255,255,0.2);
+      border-color: white;
+    }
+
+    /* Sections */
+    section {
+      padding: 64px 0;
+    }
+
+    section:nth-of-type(even):not(.hero):not(.cta-section) {
+      background: var(--white);
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 32px;
+      text-align: center;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+    }
+
+    /* Features */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 28px;
+      border: 1px solid var(--card-border);
+      transition: box-shadow 0.2s;
+    }
+
+    .feature-card:hover {
+      box-shadow: 0 8px 24px var(--shadow);
+    }
+
+    .feature-card .icon {
+      width: 48px;
+      height: 48px;
+      background: var(--icon-bg);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .feature-card .icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--primary);
+    }
+
+    .feature-card .icon svg circle[fill],
+    .feature-card .icon svg circle[fill="var(--primary)"] {
+      fill: var(--primary);
+    }
+
+    .feature-card h3 {
+      color: var(--primary);
+    }
+
+    .feature-card p {
+      color: var(--text-light);
+      font-size: 0.95rem;
+    }
+
+    /* Pricing */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .pricing-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 32px 24px;
+      border: 1px solid var(--card-border);
+      text-align: center;
+      transition: box-shadow 0.2s;
+    }
+
+    .pricing-card:hover {
+      box-shadow: 0 8px 24px var(--shadow);
+    }
+
+    .pricing-card.featured {
+      border-color: var(--accent);
+      border-width: 2px;
+      position: relative;
+    }
+
+    .pricing-card.featured::before {
+      content: "Most Popular";
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: #111827;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 16px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .pricing-card .price {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 16px 0;
+    }
+
+    .pricing-card .price span {
+      font-size: 1rem;
+      color: var(--text-light);
+      font-weight: 400;
+    }
+
+    .pricing-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+
+    .pricing-card ul li {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--card-border);
+      font-size: 0.95rem;
+    }
+
+    .pricing-card ul li:last-child {
+      border-bottom: none;
+    }
+
+    .pricing-card .cta {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 10px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-top: 8px;
+    }
+
+    .pricing-card.featured .cta {
+      background: var(--accent);
+      color: #111827;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      text-align: center;
+      padding: 80px 0;
+    }
+
+    .cta-section h2 {
+      margin-bottom: 16px;
+    }
+
+    .cta-section p {
+      color: var(--text-light);
+      max-width: 520px;
+      margin: 0 auto 32px;
+      font-size: 1.1rem;
+    }
+
+    /* Toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      background: var(--white);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 2px 8px var(--shadow);
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.1);
+    }
+
+    .theme-toggle svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--text);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .theme-toggle .sun { display: block; }
+    .theme-toggle .moon { display: none; }
+
+    [data-theme="dark"] .theme-toggle .sun { display: none; }
+    [data-theme="dark"] .theme-toggle .moon { display: block; }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 32px 0;
+      color: var(--text-light);
+      font-size: 0.875rem;
+      border-top: 1px solid var(--card-border);
+    }
+
+    /* Steps */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      background: var(--white);
+      padding: 20px 24px;
+      border-radius: 10px;
+      border: 1px solid var(--card-border);
+    }
+
+    .step-num {
+      background: var(--primary);
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .step h3 {
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .step p {
+      color: var(--text-light);
+      font-size: 0.95rem;
+    }
+
+    .step code {
+      background: var(--code-bg);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 1rem; }
+      .pricing-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+    <svg class="sun" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="5"/>
+      <line x1="12" y1="1" x2="12" y2="3"/>
+      <line x1="12" y1="21" x2="12" y2="23"/>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+      <line x1="1" y1="12" x2="3" y2="12"/>
+      <line x1="21" y1="12" x2="23" y2="12"/>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+    <svg class="moon" viewBox="0 0 24 24">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+  </button>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <p class="tagline">⚡ Zero dependencies. Zero tracking. Zero permission.</p>
+      <h1>Build your own AI coding assistant.<br/>Brand it. Sell it.</h1>
+      <p>Daedalus-Lite is a lightweight starter template for building and selling your own branded AI CLI. No SaaS fees. No tracking. Just your brand, your code, your price.</p>
+      <a href="#pricing" class="cta-button">See Pricing →</a>
+      <a href="https://github.com/briangill/daedalus-lite" class="cta-secondary">View on GitHub</a>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section>
+    <div class="container">
+      <h2>What you get</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+          </div>
+          <h3>InMemory Router</h3>
+          <p>Routes to OpenAI, Anthropic, or local models (Ollama/LM Studio) with a unified response format. Your frontend never needs to know which model is running.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="4 17 10 11 4 5"/>
+              <line x1="12" y1="19" x2="20" y2="19"/>
+            </svg>
+          </div>
+          <h3>REPL Shell</h3>
+          <p>Interactive terminal with built-in commands. `/help`, `/model`, `/clear`, `/exit`. Node's native readline — no extra dependencies.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+              <line x1="12" y1="22.08" x2="12" y2="12"/>
+            </svg>
+          </div>
+          <h3>Zero Dependencies</h3>
+          <p>One runtime dependency: `commander`. That's it. Install, build, ship. No webpack, no vite, no bloat.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <h3>Local AI Ready</h3>
+          <p>Works with Ollama and LM Studio out of the box. No internet required. No API keys for local models.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="13.5" cy="6.5" r="0.5" fill="var(--primary)"/>
+              <circle cx="17.5" cy="10.5" r="0.5" fill="var(--primary)"/>
+              <circle cx="8.5" cy="7.5" r="0.5" fill="var(--primary)"/>
+              <circle cx="6.5" cy="12.5" r="0.5" fill="var(--primary)"/>
+              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/>
+            </svg>
+          </div>
+          <h3>Rebrand in 10 Minutes</h3>
+          <p>Change the name, colors, banner, and tagline. Your brand, your CLI, your price.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23"/>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+          </div>
+          <h3>Sell It</h3>
+          <p>MIT + Branded Commercial license. You own what you build. Ship it as a product, not a side project.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section>
+    <div class="container">
+      <h2>How it works</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div>
+            <h3>Install</h3>
+            <p><code>npm install</code> — one command, zero headaches.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>
+            <h3>Build</h3>
+            <p><code>npm run build</code> — compiles TypeScript in seconds.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div>
+            <h3>Run</h3>
+            <p><code>npm run repl</code> — you're talking to an AI.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div>
+            <h3>Rebrand & Sell</h3>
+            <p>Change the name, colors, banner. Set your price. Ship it.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing">
+    <div class="container">
+      <h2>Pricing</h2>
+      <p style="text-align:center;color:var(--text-light);margin-bottom:8px;">One-time purchase. You own it forever.</p>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Starter</h3>
+          <div class="price">$19 <span>one-time</span></div>
+          <ul>
+            <li>Private GitHub template access</li>
+            <li>PDF setup manual</li>
+            <li>Branding guidelines</li>
+            <li>Email support</li>
+          </ul>
+          <a href="#" class="cta">Get Started</a>
+        </div>
+        <div class="pricing-card featured">
+          <h3>Pro</h3>
+          <div class="price">$49 <span>one-time</span></div>
+          <ul>
+            <li>Everything in Starter</li>
+            <li>Pre-compiled binaries</li>
+            <li>Custom theme & banner</li>
+            <li>Priority support</li>
+          </ul>
+          <a href="#" class="cta">Get Pro</a>
+        </div>
+        <div class="pricing-card">
+          <h3>Enterprise</h3>
+          <div class="price">$249 <span>one-time</span></div>
+          <ul>
+            <li>Everything in Pro</li>
+            <li>1-hour setup call</li>
+            <li>Custom integrations</li>
+            <li>White-glove onboarding</li>
+          </ul>
+          <a href="#" class="cta">Get Enterprise</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" style="background:var(--primary);color:white;">
+    <div class="container">
+      <h2 style="color:white;">Stop renting AI tools.<br/>Build and sell your own.</h2>
+      <p style="color:var(--hero-text);">Most AI tooling is SaaS with monthly fees. Daedalus-Lite is a one-time template you own forever.</p>
+      <a href="#pricing" class="cta-button">See Pricing →</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>Daedalus-Lite &copy; 2026 Brian Gill. MIT / Branded Commercial License.</p>
+      <p style="margin-top:8px;">
+        <a href="manual/index.html" style="color:var(--primary);">📖 Read the Manual</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('daedalus-theme', next);
+    }
+
+    (function initTheme() {
+      const saved = localStorage.getItem('daedalus-theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (saved === 'dark' || (!saved && prefersDark)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+</body>
+</html>
