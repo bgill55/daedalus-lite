@@ -66,8 +66,8 @@ How it works:
 
 Build your AI CLI this weekend. Ship it under your brand by Monday.
 
-🔗 [github.com/yourusername/daedalus-lite](https://github.com/yourusername/daedalus-lite) (public docs)
-🔒 [github.com/yourusername/daedalus-lite-template](https://github.com/yourusername/daedalus-lite-template) (private template - access granted after purchase)
+🔗 [github.com/bgill55/daedalus-lite](https://github.com/bgill55/daedalus-lite) (public docs)
+🔒 [github.com/bgill55/daedalus-lite-template](https://github.com/bgill55/daedalus-lite-template) (private template - access granted after purchase)
 
 ---
 
@@ -118,8 +118,8 @@ One-time purchase. No subscriptions. No tracking.
 
 Would love feedback from the HN community on the approach, the pricing, and the architecture.
 
-🔗 Public docs: [github.com/yourusername/daedalus-lite](https://github.com/yourusername/daedalus-lite)
-🔒 Private template: [github.com/yourusername/daedalus-lite-template](https://github.com/yourusername/daedalus-lite-template) (access after purchase)
+🔗 Public docs: [github.com/bgill55/daedalus-lite](https://github.com/bgill55/daedalus-lite)
+🔒 Private template: [github.com/bgill55/daedalus-lite-template](https://github.com/bgill55/daedalus-lite-template) (access after purchase)
 
 ---
 
@@ -166,8 +166,8 @@ One-time purchase. No subscriptions. You own it forever.
 - Would you buy this? If not, what's missing?
 - What's the one feature that would make this a no-brainer for you?
 
-🔗 Public docs: [github.com/yourusername/daedalus-lite](https://github.com/yourusername/daedalus-lite)
-🔒 Private template: [github.com/yourusername/daedalus-lite-template](https://github.com/yourusername/daedalus-lite-template) (access after purchase)
+🔗 Public docs: [github.com/bgill55/daedalus-lite](https://github.com/bgill55/daedalus-lite)
+🔒 Private template: [github.com/bgill55/daedalus-lite-template](https://github.com/bgill55/daedalus-lite-template) (access after purchase)
 
 ---
 
@@ -186,8 +186,8 @@ I built Daedalus-Lite — a zero-dependency starter template for creating brande
 The pitch: ~300 lines of TypeScript, one runtime dependency, works with OpenAI/Anthropic/local models. You can rebrand it in 10 minutes and sell it as your own product.
 
 Here's how it works:
-- Public repo (docs/sales page): github.com/yourusername/daedalus-lite
-- Private template (source code): github.com/yourusername/daedalus-lite-template (access granted after purchase)
+- Public repo (docs/sales page): github.com/bgill55/daedalus-lite
+- Private template (source code): github.com/bgill55/daedalus-lite-template (access granted after purchase)
 
 I think your audience would love it because:
 - It's a genuine "build in a weekend" project
@@ -231,8 +231,8 @@ One-time purchase. You own it forever.
 
 Would love feedback from the community. Is the pricing right? What's missing?
 
-🔗 Public docs: [github.com/yourusername/daedalus-lite](https://github.com/yourusername/daedalus-lite)
-🔒 Private template: [github.com/yourusername/daedalus-lite-template](https://github.com/yourusername/daedalus-lite-template) (access after purchase)
+🔗 Public docs: [github.com/bgill55/daedalus-lite](https://github.com/bgill55/daedalus-lite)
+🔒 Private template: [github.com/bgill55/daedalus-lite-template](https://github.com/bgill55/daedalus-lite-template) (access after purchase)
 
 ---
 
