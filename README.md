@@ -10,6 +10,12 @@
 </p>
 
 <p align="center">
+  <a href="https://bgill55.github.io/daedalus-lite/" target="_blank">
+    <img src="https://img.shields.io/badge/Live%20Demo-Visit%20Site-1E3A8A?style=for-the-badge&logo=github" alt="Live Demo">
+  </a>
+</p>
+
+<p align="center">
   <a href="#pricing">Pricing</a> •
   <a href="#what-you-get">What You Get</a> •
   <a href="#faq">FAQ</a>
@@ -38,7 +44,7 @@ Daedalus-Lite gives you the **exact architecture** used by premium AI coding ass
 
 ## What you get
 
-| Feature | What it means |
+|| Feature | What it means |
 |---------|---------------|
 | **InMemory Router** | Routes to OpenAI, Anthropic, or local models (Ollama/LM Studio) with a unified response format |
 | **REPL Shell** | Interactive terminal with `/help`, `/model`, `/clear`, `/exit` |
@@ -56,7 +62,7 @@ Daedalus-Lite gives you the **exact architecture** used by premium AI coding ass
 
 ## Pricing
 
-| Tier | Price | What you get |
+|| Tier | Price | What you get |
 |------|-------|-------------|
 | **Starter** | $19 | Private GitHub template access + PDF manual + email support |
 | **Pro** | $49 | Everything in Starter + pre-compiled binaries + custom theme & banner + priority support |
