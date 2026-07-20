@@ -70,5 +70,5 @@ Daedalus-Lite gives you the **exact architecture** used by premium AI coding ass
 
 <p align="center">
   <a href="docs/manual/index.html">📖 Preview the Manual</a> •
-  <a href="https://github.com/yourusername/daedalus-lite-template">🔒 Access the Private Template (after purchase)</a>
+  <a href="https://github.com/bgill55/daedalus-lite-template">🔒 Access the Private Template (after purchase)</a>
 </p>
