@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/manual/daedalus_guide_cover.png" alt="Daedalus-Lite" width="400"/>
+  <img src="docs/manual/daedalus_lite_logo.png" alt="Daedalus-Lite Logo" width="200"/>
 </p>
 
 <h1 align="center">Daedalus-Lite</h1>
@@ -44,14 +44,14 @@ Daedalus-Lite gives you the **exact architecture** used by premium AI coding ass
 
 ## What you get
 
-|| Feature | What it means |
-|---------|---------------|
-| **InMemory Router** | Routes to OpenAI, Anthropic, or local models (Ollama/LM Studio) with a unified response format |
-| **REPL Shell** | Interactive terminal with `/help`, `/model`, `/clear`, `/exit` |
-| **Zero Dependencies** | Only `commander` at runtime. That's it. |
-| **Local AI Ready** | Works with Ollama, LM Studio — no internet required |
-| **Rebrandable** | Change the name, colors, banner — it's yours |
-| **Sellable** | MIT + Branded Commercial license. Ship it. |
+||| Feature | What it means |
+||---------|---------------|
+|| **InMemory Router** | Routes to OpenAI, Anthropic, or local models (Ollama/LM Studio) with a unified response format |
+|| **REPL Shell** | Interactive terminal with `/help`, `/model`, `/clear`, `/exit` |
+|| **Zero Dependencies** | Only `commander` at runtime. That's it. |
+|| **Local AI Ready** | Works with Ollama, LM Studio — no internet required |
+|| **Rebrandable** | Change the name, colors, banner — it's yours |
+|| **Sellable** | MIT + Branded Commercial license. Ship it. |
 
 ## How it works
 
@@ -62,11 +62,11 @@ Daedalus-Lite gives you the **exact architecture** used by premium AI coding ass
 
 ## Pricing
 
-|| Tier | Price | What you get |
-|------|-------|-------------|
-| **Starter** | $19 | Private GitHub template access + PDF manual + email support |
-| **Pro** | $49 | Everything in Starter + pre-compiled binaries + custom theme & banner + priority support |
-| **Enterprise** | $249 | Everything in Pro + 1-hour setup call + custom integrations + white-glove onboarding |
+||| Tier | Price | What you get |
+||------|-------|-------------|
+|| **Starter** | $19 | Private GitHub template access + PDF manual + email support |
+|| **Pro** | $49 | Everything in Starter + pre-compiled binaries + custom theme & banner + priority support |
+|| **Enterprise** | $249 | Everything in Pro + 1-hour setup call + custom integrations + white-glove onboarding |
 
 ## The Pitch
 
@@ -78,3 +78,16 @@ Daedalus-Lite gives you the **exact architecture** used by premium AI coding ass
   <a href="docs/manual/index.html">📖 Preview the Manual</a> •
   <a href="https://github.com/bgill55/daedalus-lite-template">🔒 Access the Private Template (after purchase)</a>
 </p>
+
+---
+
+## 🎥 Introduction Video
+
+Watch a quick introduction to Daedalus-Lite:
+
+<video width="100%" controls>
+  <source src="docs/manual/daedalus_lite_introduction.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+*See Daedalus-Lite in action and learn how to build your own AI coding assistant business.*
