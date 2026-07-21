@@ -94,16 +94,3 @@ See the full [What's Possible guide](docs/whats-possible.html) with code example
   <a href="docs/manual/index.html">Preview the Manual</a> •
   <a href="https://github.com/bgill55/daedalus-lite-template">Access the Private Template (after purchase)</a>
 </p>
-
----
-
-## Introduction Video
-
-Watch a quick introduction to Daedalus-Lite:
-
-<video width="100%" controls>
-  <source src="docs/manual/daedalus_lite_introduction.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-
-*See Daedalus-Lite in action and learn how to build your own AI coding assistant business.*
