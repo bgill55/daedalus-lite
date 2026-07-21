@@ -64,7 +64,7 @@ Daedalus-Lite gives you the **exact architecture** used by premium AI coding ass
 
 | Tier | Price | Action |
 |------|-------|--------|
-| **Starter** | $19 | [<img src="https://img.shields.io/badge/Buy_Now-Gumroad-F59E0B?style=for-the-badge&logo=gumroad" alt="Buy Now">](https://artistrybgill.gumroad.com/l/mkqrme) |
+| **Starter** | $19 | [<img src="https://img.shields.io/badge/Buy_Now-Gumroad-F59E0B?style=for-the-badge&logo=gumroad" alt="Buy Now">](https://bgill55dev.gumroad.com/l/mkqrme) |
 
 ## The Pitch
 
@@ -89,6 +89,6 @@ See the full [What's Possible guide](docs/whats-possible.html) with code example
 ---
 
 <p align="center">
-  <a href="https://artistrybgill.gumroad.com/l/mkqrme">Get the Template via Gumroad</a> •
+  <a href="https://bgill55dev.gumroad.com/l/mkqrme">Get the Template via Gumroad</a> •
   <a href="https://github.com/bgill55/daedalus-lite-template">View the Private Template Source (after purchase)</a>
 </p>
