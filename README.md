@@ -24,7 +24,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Node.js-20%2B-1E3A8A" alt="Node 20+"/>
   <img src="https://img.shields.io/badge/license-MIT%20%2F%20Branded%20Commercial-F59E0B" alt="License"/>
-  <img src="https://img.shields.io/badge/dependencies-1-22c55e" alt="One Dependency"/>
+  <img src="https://img.shields.io/badge/dependencies-0-22c55e" alt="Zero Dependencies"/>
   <img src="https://img.shields.io/badge/TypeScript-5%2B-3178C6" alt="TypeScript"/>
 </p>
 
@@ -48,25 +48,23 @@ Daedalus-Lite gives you the **exact architecture** used by premium AI coding ass
 |---------|---------------|
 | **InMemory Router** | Routes to OpenAI, Anthropic, or local models (Ollama/LM Studio) with a unified response format |
 | **REPL Shell** | Interactive terminal with `/help`, `/model`, `/clear`, `/exit` |
-| **Zero Dependencies** | Only `dotenv` at runtime. That's it. |
+| **Zero Dependencies** | Pure native Node 20+ Fetch API. No third-party runtime bloat. |
 | **Local AI Ready** | Works with Ollama, LM Studio — no internet required |
 | **Rebrandable** | Change the name, colors, banner — it's yours |
 | **Sellable** | MIT + Branded Commercial license. Ship it. |
 
 ## How it works
 
-1. Purchase a license (Starter, Pro, or Enterprise)
-2. Get access to the **private template repository** containing the full source code
+1. Purchase a license
+2. Get instant access to the **private template repository** containing the full source code
 3. Use the template as a starting point — rebrand, modify, and sell your own AI CLI
 4. Keep 100% of your profits — no royalties, no subscription fees
 
 ## Pricing
 
-| Tier | Price | What you get |
-|------|-------|-------------|
-| **Starter** | $19 | Private GitHub template access + PDF manual + email support |
-| **Pro** | $49 | Everything in Starter + pre-compiled binaries + custom theme & banner + priority support |
-| **Enterprise** | $249 | Everything in Pro + 1-hour setup call + custom integrations + white-glove onboarding |
+| Tier | Price | Action |
+|------|-------|--------|
+| **Starter** | $19 | [<img src="https://img.shields.io/badge/Buy_Now-Gumroad-F59E0B?style=for-the-badge&logo=gumroad" alt="Buy Now">](https://artistrybgill.gumroad.com/l/mkqrme) |
 
 ## The Pitch
 
@@ -91,6 +89,6 @@ See the full [What's Possible guide](docs/whats-possible.html) with code example
 ---
 
 <p align="center">
-  <a href="https://gumroad.com/l/daedalus-lite-starter">Get the Template via Gumroad</a> •
+  <a href="https://artistrybgill.gumroad.com/l/mkqrme">Get the Template via Gumroad</a> •
   <a href="https://github.com/bgill55/daedalus-lite-template">View the Private Template Source (after purchase)</a>
 </p>

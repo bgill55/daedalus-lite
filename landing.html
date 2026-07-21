@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-gumroad-field="name">Daedalus Lite — AI Coding Agent Starter Kit</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eefbff',
+              100: '#d5f5ff',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              900: '#0c4a6e',
+            },
+            accent: {
+              400: '#fbbf24',
+              500: '#f59e0b',
+            }
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 6s ease-in-out infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-10px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700;800&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    code, pre {
+      font-family: 'Fira Code', monospace;
+    }
+    .glass {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .light .glass {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #38bdf8 0%, #fbbf24 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased selection:bg-sky-500 selection:text-white min-h-screen transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100 light:bg-slate-50 light:text-slate-900" id="app">
+
+  <!-- Navigation Bar -->
+  <nav class="sticky top-0 z-50 glass border-b border-slate-800/80 px-4 sm:px-8 py-4">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="h-9 w-9 rounded-xl bg-gradient-to-tr from-sky-500 to-amber-400 p-0.5 flex items-center justify-center shadow-lg shadow-sky-500/20">
+          <div class="h-full w-full bg-slate-950 rounded-[10px] flex items-center justify-center font-bold text-sky-400 text-lg">
+            ⚡
+          </div>
+        </div>
+        <span class="font-extrabold text-xl tracking-tight text-white" data-gumroad-field="name">Daedalus Lite</span>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle" type="button" aria-label="Toggle Theme" class="p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-white transition">
+          <svg id="theme-icon-sun" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+          <svg id="theme-icon-moon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+        </button>
+
+        <a data-gumroad-action="buy" class="cursor-pointer inline-flex items-center gap-2 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 text-slate-950 font-bold px-5 py-2.5 rounded-xl shadow-lg shadow-sky-500/25 transition transform active:scale-95">
+          <span>Get Template</span>
+          <span data-gumroad-field="price" class="text-xs bg-slate-950/20 px-2 py-0.5 rounded-full">$29</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="relative pt-16 pb-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto text-center overflow-hidden">
+    <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-sky-500/15 blur-[120px] rounded-full pointer-events-none"></div>
+
+    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-xs font-semibold uppercase tracking-wider mb-6">
+      <span>🚀 100% TypeScript • Zero Runtime Dependencies</span>
+    </div>
+
+    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6 leading-tight max-w-4xl mx-auto" data-gumroad-field="name">
+      Build Your Own <span class="gradient-text">Local AI Coding Agent</span> in Minutes
+    </h1>
+
+    <p class="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed" data-gumroad-field="description">
+      Production-ready TypeScript starter template featuring multi-model routing (OpenAI, Anthropic, Ollama, LM Studio), execution history engine, zero runtime dependencies, and full Jest ESM test suite.
+    </p>
+
+    <!-- Buy CTA Buttons -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto mb-16">
+      <a data-gumroad-action="buy" class="cursor-pointer w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-gradient-to-r from-sky-400 via-sky-500 to-amber-400 hover:opacity-95 text-slate-950 font-extrabold text-lg px-8 py-4 rounded-2xl shadow-xl shadow-sky-500/20 transition transform hover:-translate-y-0.5 active:translate-y-0">
+        <span>Get Daedalus Lite Now</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+      </a>
+      <a href="#features" class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-4 rounded-2xl border border-slate-800 bg-slate-900/60 hover:bg-slate-800 text-slate-300 font-semibold transition">
+        Explore Architecture ↓
+      </a>
+    </div>
+
+    <!-- Product Cover Banner Image -->
+    <div class="mt-12 max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-slate-800/80 glass p-2">
+      <img src="https://public-files.gumroad.com/k8m47r3fvjtpf41g0lju13o50ykf" alt="Daedalus Lite Cover" class="w-full h-auto rounded-2xl object-cover" />
+    </div>
+
+    <!-- Product Spec Badges -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mt-12">
+      <div class="glass p-4 rounded-2xl border border-slate-800/80 text-left">
+        <div class="text-xs text-slate-500 uppercase font-semibold">Language</div>
+        <div class="text-base font-bold text-slate-200 mt-1">TypeScript (ESM)</div>
+      </div>
+      <div class="glass p-4 rounded-2xl border border-slate-800/80 text-left">
+        <div class="text-xs text-slate-500 uppercase font-semibold">Dependencies</div>
+        <div class="text-base font-bold text-sky-400 mt-1">0 Runtime Deps</div>
+      </div>
+      <div class="glass p-4 rounded-2xl border border-slate-800/80 text-left">
+        <div class="text-xs text-slate-500 uppercase font-semibold">Model Router</div>
+        <div class="text-base font-bold text-amber-400 mt-1">Cloud + Local</div>
+      </div>
+      <div class="glass p-4 rounded-2xl border border-slate-800/80 text-left">
+        <div class="text-xs text-slate-500 uppercase font-semibold">Test Suite</div>
+        <div class="text-base font-bold text-slate-200 mt-1">100% Jest ESM</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Features Grid Section -->
+  <section id="features" class="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-4">
+        Built for Speed, Privacy, and Scalability
+      </h2>
+      <p class="text-slate-400 max-w-2xl mx-auto">
+        Everything you need to launch a custom AI coding CLI or embedded agent backend without reinventing infrastructure.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Feature Card 1 -->
+      <div class="glass p-8 rounded-3xl relative overflow-hidden group hover:border-sky-500/50 transition">
+        <div class="h-12 w-12 rounded-2xl bg-sky-500/10 border border-sky-500/20 text-sky-400 flex items-center justify-center text-2xl mb-6">
+          🧠
+        </div>
+        <h3 class="text-xl font-bold text-white mb-3">Multi-Model LLM Router</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">
+          Switch seamlessly between OpenAI, Anthropic, Ollama, and LM Studio with priority fallback chains, request timeouts, and rate limiters.
+        </p>
+      </div>
+
+      <!-- Feature Card 2 -->
+      <div class="glass p-8 rounded-3xl relative overflow-hidden group hover:border-amber-500/50 transition">
+        <div class="h-12 w-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-2xl mb-6">
+          ⚡
+        </div>
+        <h3 class="text-xl font-bold text-white mb-3">Zero Runtime Dependencies</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">
+          Ultra-lean Node.js >=20 footprint. Built with standard Fetch API, native ESM modules, and zero heavy third-party framework bloat.
+        </p>
+      </div>
+
+      <!-- Feature Card 3 -->
+      <div class="glass p-8 rounded-3xl relative overflow-hidden group hover:border-emerald-500/50 transition">
+        <div class="h-12 w-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl mb-6">
+          🧪
+        </div>
+        <h3 class="text-xl font-bold text-white mb-3">Jest ESM Test Suite</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">
+          Includes comprehensive unit test coverage out of the box. Ships with instant TypeScript type checking and pre-configured dev tools.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Code Snippet Showcase -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+    <div class="glass rounded-3xl p-6 sm:p-8 border border-slate-800">
+      <div class="flex items-center justify-between mb-4 border-b border-slate-800 pb-4">
+        <div class="flex items-center gap-2">
+          <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+          <div class="w-3 h-3 rounded-full bg-amber-500/80"></div>
+          <div class="w-3 h-3 rounded-full bg-emerald-500/80"></div>
+          <span class="text-xs text-slate-400 font-mono ml-2">quickstart.ts</span>
+        </div>
+        <span class="text-xs text-sky-400 bg-sky-500/10 px-2.5 py-1 rounded-full font-semibold">100% ESM</span>
+      </div>
+
+      <pre class="text-xs sm:text-sm text-slate-300 overflow-x-auto leading-relaxed"><code><span class="text-sky-400">import</span> { InMemoryRouter } <span class="text-sky-400">from</span> <span class="text-amber-300">'./src/router.js'</span>;
+
+<span class="text-slate-500">// Initialize zero-dependency local model router</span>
+<span class="text-sky-400">const</span> router = <span class="text-sky-400">new</span> InMemoryRouter({
+  strategy: <span class="text-amber-300">'priority'</span>,
+  chain: [
+    { name: <span class="text-amber-300">'ollama-local'</span>, endpoint: <span class="text-amber-300">'http://localhost:11434/v1'</span>, model: <span class="text-amber-300">'qwen2.5-coder'</span> },
+    { name: <span class="text-amber-300">'openai-cloud'</span>, endpoint: <span class="text-amber-300">'https://api.openai.com/v1'</span>, model: <span class="text-amber-300">'gpt-4o'</span> }
+  ]
+});
+
+<span class="text-slate-500">// Execute model turn with history tracking</span>
+<span class="text-sky-400">const</span> response = <span class="text-sky-400">await</span> router.dispatch(<span class="text-amber-300">'Refactor src/router.ts for performance'</span>);
+console.log(response.content);</code></pre>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+    <h2 class="text-3xl font-bold text-center text-white mb-12">Frequently Asked Questions</h2>
+    <div class="space-y-4">
+      <details class="glass p-6 rounded-2xl cursor-pointer group">
+        <summary class="font-semibold text-white flex items-center justify-between">
+          <span>Can I use this for commercial projects?</span>
+          <span class="text-sky-400 group-open:rotate-180 transition-transform">↓</span>
+        </summary>
+        <p class="text-slate-400 text-sm mt-3 leading-relaxed">
+          Yes! Purchasing Daedalus Lite includes a commercial license allowing you to build, customize, and deploy proprietary or commercial software without royalties.
+        </p>
+      </details>
+
+      <details class="glass p-6 rounded-2xl cursor-pointer group">
+        <summary class="font-semibold text-white flex items-center justify-between">
+          <span>What Node.js version is required?</span>
+          <span class="text-sky-400 group-open:rotate-180 transition-transform">↓</span>
+        </summary>
+        <p class="text-slate-400 text-sm mt-3 leading-relaxed">
+          Daedalus Lite requires Node.js >= 20.0.0 for native fetch and ES module support.
+        </p>
+      </details>
+    </div>
+  </section>
+
+  <!-- Sticky Bottom Buy CTA Bar -->
+  <footer class="sticky bottom-0 z-40 glass border-t border-slate-800/80 p-4">
+    <div class="max-w-4xl mx-auto flex items-center justify-between gap-4">
+      <div class="hidden sm:block">
+        <div class="font-bold text-white" data-gumroad-field="name">Daedalus Lite Template</div>
+        <div class="text-xs text-slate-400">Instant ZIP Download • Full Source Code</div>
+      </div>
+      <a data-gumroad-action="buy" class="cursor-pointer w-full sm:w-auto ml-auto inline-flex items-center justify-center gap-3 bg-gradient-to-r from-sky-400 to-amber-400 text-slate-950 font-extrabold px-8 py-3 rounded-xl shadow-lg shadow-sky-500/20 transition transform active:scale-95">
+        <span>Buy Now</span>
+        <span data-gumroad-field="price" class="text-sm bg-slate-950/20 px-2.5 py-0.5 rounded-full">$29</span>
+      </a>
+    </div>
+  </footer>
+
+  <!-- Theme Switching Script -->
+  <script>
+    (function() {
+      const toggleBtn = document.getElementById('theme-toggle');
+      const sunIcon = document.getElementById('theme-icon-sun');
+      const moonIcon = document.getElementById('theme-icon-moon');
+      const app = document.getElementById('app');
+
+      toggleBtn.addEventListener('click', function() {
+        const isDark = app.classList.contains('dark');
+        if (isDark) {
+          app.classList.remove('dark');
+          app.classList.add('light');
+          sunIcon.classList.remove('hidden');
+          moonIcon.classList.add('hidden');
+        } else {
+          app.classList.remove('light');
+          app.classList.add('dark');
+          sunIcon.classList.add('hidden');
+          moonIcon.classList.remove('hidden');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
