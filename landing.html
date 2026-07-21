@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="dark scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -52,18 +52,39 @@
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
-    .light .glass {
-      background: rgba(255, 255, 255, 0.85);
-      border: 1px solid rgba(0, 0, 0, 0.08);
+    html:not(.dark) .glass {
+      background: rgba(255, 255, 255, 0.88) !important;
+      border: 1px solid rgba(0, 0, 0, 0.1) !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+    html:not(.dark) .text-white {
+      color: #0f172a !important;
+    }
+    html:not(.dark) .text-slate-400 {
+      color: #475569 !important;
+    }
+    html:not(.dark) nav, html:not(.dark) footer {
+      background: rgba(255, 255, 255, 0.92) !important;
+      border-color: rgba(0, 0, 0, 0.08) !important;
+    }
+    html:not(.dark) #theme-toggle {
+      background-color: #f1f5f9 !important;
+      border-color: #cbd5e1 !important;
+      color: #0f172a !important;
     }
     .gradient-text {
+      background: linear-gradient(135deg, #0284c7 0%, #d97706 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    html.dark .gradient-text {
       background: linear-gradient(135deg, #38bdf8 0%, #fbbf24 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 antialiased selection:bg-sky-500 selection:text-white min-h-screen transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100 light:bg-slate-50 light:text-slate-900" id="app">
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 antialiased selection:bg-sky-500 selection:text-white min-h-screen transition-colors duration-300" id="app">
 
   <!-- Navigation Bar -->
   <nav class="sticky top-0 z-50 glass border-b border-slate-800/80 px-4 sm:px-8 py-4">
@@ -268,22 +289,19 @@ console.log(response.content);</code></pre>
       const toggleBtn = document.getElementById('theme-toggle');
       const sunIcon = document.getElementById('theme-icon-sun');
       const moonIcon = document.getElementById('theme-icon-moon');
-      const app = document.getElementById('app');
 
-      toggleBtn.addEventListener('click', function() {
-        const isDark = app.classList.contains('dark');
-        if (isDark) {
-          app.classList.remove('dark');
-          app.classList.add('light');
-          sunIcon.classList.remove('hidden');
-          moonIcon.classList.add('hidden');
-        } else {
-          app.classList.remove('light');
-          app.classList.add('dark');
-          sunIcon.classList.add('hidden');
-          moonIcon.classList.remove('hidden');
-        }
-      });
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', function() {
+          const isDark = document.documentElement.classList.toggle('dark');
+          if (isDark) {
+            sunIcon.classList.add('hidden');
+            moonIcon.classList.remove('hidden');
+          } else {
+            sunIcon.classList.remove('hidden');
+            moonIcon.classList.add('hidden');
+          }
+        });
+      }
     })();
   </script>
 </body>
