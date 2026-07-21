@@ -637,12 +637,109 @@ export const errorHandlerMiddleware = async (
   <!-- What's Possible -->
   <section id="what-is-possible">
     <div class="container">
-      <h2>What's Possible with Daedalus-Lite</h2>
-      <p style="text-align:center;color:var(--text-light);margin-bottom:32px;max-width:640px;margin-left:auto;margin-right:auto;">
-        From financial compliance assistants and legal document analyzers to full multi-agent orchestrators like <strong>Daedalus</strong> — see how a few lines of middleware unlock unlimited real-world AI applications.
+      <h2>What You Can Build with Daedalus-Lite</h2>
+      <p style="text-align:center;color:var(--text-light);margin-bottom:48px;max-width:680px;margin-left:auto;margin-right:auto;">
+        Daedalus-Lite's 3-step middleware architecture lets you intercept, enrich, and format AI interactions for any domain. Here is what's possible:
       </p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));gap:24px;margin-bottom:40px;">
+        <!-- Card 1: Finance -->
+        <div style="background:var(--white);border-radius:12px;border:1px solid var(--card-border);padding:24px;box-shadow:0 4px 12px var(--shadow);">
+          <div style="font-size:2rem;margin-bottom:12px;">📊</div>
+          <h3 style="margin-bottom:8px;font-size:1.15rem;">Financial & Compliance Assistant</h3>
+          <p style="color:var(--text-light);font-size:0.9rem;margin-bottom:16px;line-height:1.5;">
+            Prepend portfolio context and automatically enforce regulatory disclaimer injection on output.
+          </p>
+          <div style="background:var(--code-bg);padding:12px;border-radius:8px;font-family:monospace;font-size:0.75rem;color:var(--text-light);line-height:1.4;">
+            export const financialGuard: Middleware = async (req, next) => {<br/>
+            &nbsp;&nbsp;req.prompt = `Add financial context: ${req.prompt}`;<br/>
+            &nbsp;&nbsp;const res = await next();<br/>
+            &nbsp;&nbsp;res.content += '\n⚠️ Not financial advice.';<br/>
+            &nbsp;&nbsp;return res;<br/>
+            };
+          </div>
+        </div>
+
+        <!-- Card 2: Legal -->
+        <div style="background:var(--white);border-radius:12px;border:1px solid var(--card-border);padding:24px;box-shadow:0 4px 12px var(--shadow);">
+          <div style="font-size:2rem;margin-bottom:12px;">⚖️</div>
+          <h3 style="margin-bottom:8px;font-size:1.15rem;">Legal Document Analyzer</h3>
+          <p style="color:var(--text-light);font-size:0.9rem;margin-bottom:16px;line-height:1.5;">
+            Parse contract clauses and enforce strict JSON schema responses with automated validation.
+          </p>
+          <div style="background:var(--code-bg);padding:12px;border-radius:8px;font-family:monospace;font-size:0.75rem;color:var(--text-light);line-height:1.4;">
+            export const legalJsonMiddleware: Middleware = async (req, next) => {<br/>
+            &nbsp;&nbsp;req.prompt = `Respond ONLY in JSON: ${req.prompt}`;<br/>
+            &nbsp;&nbsp;const res = await next();<br/>
+            &nbsp;&nbsp;JSON.parse(res.content); // validate schema<br/>
+            &nbsp;&nbsp;return res;<br/>
+            };
+          </div>
+        </div>
+
+        <!-- Card 3: Code Review -->
+        <div style="background:var(--white);border-radius:12px;border:1px solid var(--card-border);padding:24px;box-shadow:0 4px 12px var(--shadow);">
+          <div style="font-size:2rem;margin-bottom:12px;">🔍</div>
+          <h3 style="margin-bottom:8px;font-size:1.15rem;">Automated Code Review Bot</h3>
+          <p style="color:var(--text-light);font-size:0.9rem;margin-bottom:16px;line-height:1.5;">
+            Scan git diffs for security vulnerabilities, memory leaks, and generate structured PR checklists.
+          </p>
+          <div style="background:var(--code-bg);padding:12px;border-radius:8px;font-family:monospace;font-size:0.75rem;color:var(--text-light);line-height:1.4;">
+            export const codeReviewer: Middleware = async (req, next) => {<br/>
+            &nbsp;&nbsp;req.prompt = `Review for security & style:\n${req.prompt}`;<br/>
+            &nbsp;&nbsp;return next();<br/>
+            };
+          </div>
+        </div>
+
+        <!-- Card 4: Medical Triage -->
+        <div style="background:var(--white);border-radius:12px;border:1px solid var(--card-border);padding:24px;box-shadow:0 4px 12px var(--shadow);">
+          <div style="font-size:2rem;margin-bottom:12px;">🩺</div>
+          <h3 style="margin-bottom:8px;font-size:1.15rem;">Medical Triage Assistant</h3>
+          <p style="color:var(--text-light);font-size:0.9rem;margin-bottom:16px;line-height:1.5;">
+            Categorize patient symptoms into urgency levels (🔴 Emergency, 🟡 Urgent, 🟢 Routine).
+          </p>
+          <div style="background:var(--code-bg);padding:12px;border-radius:8px;font-family:monospace;font-size:0.75rem;color:var(--text-light);line-height:1.4;">
+            export const medicalTriage: Middleware = async (req, next) => {<br/>
+            &nbsp;&nbsp;req.prompt = `Classify symptom urgency:\n${req.prompt}`;<br/>
+            &nbsp;&nbsp;return next();<br/>
+            };
+          </div>
+        </div>
+
+        <!-- Card 5: RAG & Support -->
+        <div style="background:var(--white);border-radius:12px;border:1px solid var(--card-border);padding:24px;box-shadow:0 4px 12px var(--shadow);">
+          <div style="font-size:2rem;margin-bottom:12px;">💬</div>
+          <h3 style="margin-bottom:8px;font-size:1.15rem;">Customer Support RAG Agent</h3>
+          <p style="color:var(--text-light);font-size:0.9rem;margin-bottom:16px;line-height:1.5;">
+            Intercept customer tickets, inject relevant knowledge base articles, and log sentiment.
+          </p>
+          <div style="background:var(--code-bg);padding:12px;border-radius:8px;font-family:monospace;font-size:0.75rem;color:var(--text-light);line-height:1.4;">
+            export const supportRAG: Middleware = async (req, next) => {<br/>
+            &nbsp;&nbsp;const kb = await searchDocs(req.prompt);<br/>
+            &nbsp;&nbsp;req.prompt = `KB Context: ${kb}\nUser: ${req.prompt}`;<br/>
+            &nbsp;&nbsp;return next();<br/>
+            };
+          </div>
+        </div>
+
+        <!-- Card 6: Flagship Daedalus -->
+        <div style="background:linear-gradient(135deg, rgba(37,99,235,0.05), rgba(79,70,229,0.05));border-radius:12px;border:2px solid var(--accent);padding:24px;box-shadow:0 4px 16px var(--shadow);">
+          <div style="font-size:2rem;margin-bottom:12px;">🏛️</div>
+          <h3 style="margin-bottom:8px;font-size:1.15rem;color:var(--primary);">Flagship Example: Daedalus</h3>
+          <p style="color:var(--text-light);font-size:0.9rem;margin-bottom:16px;line-height:1.5;">
+            Built on Daedalus-Lite and extended into a full multi-agent CLI with FTS5 indexing & autonomous loops.
+          </p>
+          <div style="background:var(--white);padding:12px;border-radius:8px;font-family:monospace;font-size:0.75rem;color:var(--accent);line-height:1.4;border:1px solid var(--card-border);">
+            // Proof of Everest:<br/>
+            // Multi-Agent Router + FTS5 Indexer<br/>
+            // 270+ Vitest suite + TUI Dashboard
+          </div>
+        </div>
+      </div>
+
       <div style="text-align:center;">
-        <a href="whats-possible.md" class="cta-button">📖 Read the "What's Possible" Guide →</a>
+        <a href="whats-possible.md" class="cta-button" style="background:var(--white);color:var(--text);border:1px solid var(--card-border);box-shadow:0 2px 8px var(--shadow);">📖 Read the Full 8+ Use Cases Guide →</a>
       </div>
     </div>
   </section>
