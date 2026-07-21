@@ -33,32 +33,52 @@
     code, pre {
       font-family: 'Fira Code', monospace;
     }
-    .glass {
-      background: rgba(15, 23, 42, 0.75);
+
+    /* Dark Mode Core Overrides */
+    html.dark, html.dark body, html.dark #app {
+      background-color: #020617 !important;
+      color: #f8fafc !important;
+    }
+    html.dark .glass {
+      background: rgba(15, 23, 42, 0.85) !important;
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    }
+    html.dark .text-white, html.dark h1, html.dark h2, html.dark h3 {
+      color: #ffffff !important;
+    }
+    html.dark .text-slate-400 {
+      color: #94a3b8 !important;
+    }
+    html.dark #theme-toggle {
+      background-color: #0f172a !important;
+      border-color: #1e293b !important;
+      color: #f8fafc !important;
+    }
+
+    /* Light Mode Core Overrides */
+    html:not(.dark), html:not(.dark) body, html:not(.dark) #app {
+      background-color: #f8fafc !important;
+      color: #0f172a !important;
     }
     html:not(.dark) .glass {
-      background: rgba(255, 255, 255, 0.88) !important;
+      background: rgba(255, 255, 255, 0.92) !important;
       border: 1px solid rgba(0, 0, 0, 0.1) !important;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     }
-    html:not(.dark) .text-white {
+    html:not(.dark) .text-white, html:not(.dark) h1, html:not(.dark) h2, html:not(.dark) h3 {
       color: #0f172a !important;
     }
     html:not(.dark) .text-slate-400 {
       color: #475569 !important;
-    }
-    html:not(.dark) nav, html:not(.dark) footer {
-      background: rgba(255, 255, 255, 0.92) !important;
-      border-color: rgba(0, 0, 0, 0.08) !important;
     }
     html:not(.dark) #theme-toggle {
       background-color: #f1f5f9 !important;
       border-color: #cbd5e1 !important;
       color: #0f172a !important;
     }
+
     .gradient-text {
       background: linear-gradient(135deg, #0284c7 0%, #d97706 100%);
       -webkit-background-clip: text;
