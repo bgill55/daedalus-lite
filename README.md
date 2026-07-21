@@ -70,6 +70,20 @@ Daedalus-Lite gives you the **exact architecture** used by premium AI coding ass
 
 > Most AI tooling is SaaS with monthly fees. Daedalus-Lite is a one-time template you own forever. Build your AI CLI this weekend. Ship it under your brand by Monday.
 
+## FAQ
+
+### What Node.js version is required?
+Node.js 20+ is required for native fetch and ES module support.
+
+### Do I need API keys to use local models?
+No. Local models (Ollama, LM Studio) run 100% offline with zero API keys required.
+
+### Can I rebrand and sell what I build?
+Yes. Daedalus-Lite includes a Branded Commercial license — you own your customized CLI product and keep 100% of your revenue.
+
+### How do I access the source code after purchase?
+Upon purchase via Gumroad, you get immediate access to download `Daedalus-Lite-Template.zip` and GitHub repository access.
+
 ---
 
 ## What's Possible with Daedalus-Lite
