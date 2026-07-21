@@ -24,7 +24,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Node.js-20%2B-1E3A8A" alt="Node 20+"/>
   <img src="https://img.shields.io/badge/license-MIT%20%2F%20Branded%20Commercial-F59E0B" alt="License"/>
-  <img src="https://img.shields.io/badge/dependencies-0-22c55e" alt="Zero Dependencies"/>
+  <img src="https://img.shields.io/badge/dependencies-1-22c55e" alt="One Dependency"/>
   <img src="https://img.shields.io/badge/TypeScript-5%2B-3178C6" alt="TypeScript"/>
 </p>
 
@@ -48,7 +48,7 @@ Daedalus-Lite gives you the **exact architecture** used by premium AI coding ass
 |---------|---------------|
 | **InMemory Router** | Routes to OpenAI, Anthropic, or local models (Ollama/LM Studio) with a unified response format |
 | **REPL Shell** | Interactive terminal with `/help`, `/model`, `/clear`, `/exit` |
-| **Zero Dependencies** | Only `commander` at runtime. That's it. |
+| **Zero Dependencies** | Only `dotenv` at runtime. That's it. |
 | **Local AI Ready** | Works with Ollama, LM Studio — no internet required |
 | **Rebrandable** | Change the name, colors, banner — it's yours |
 | **Sellable** | MIT + Branded Commercial license. Ship it. |
