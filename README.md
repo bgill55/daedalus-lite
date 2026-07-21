@@ -91,6 +91,6 @@ See the full [What's Possible guide](docs/whats-possible.html) with code example
 ---
 
 <p align="center">
-  <a href="docs/manual/index.html">Preview the Manual</a> •
-  <a href="https://github.com/bgill55/daedalus-lite-template">Access the Private Template (after purchase)</a>
+  <a href="https://gumroad.com/l/daedalus-lite-starter">Get the Template via Gumroad</a> •
+  <a href="https://github.com/bgill55/daedalus-lite-template">View the Private Template Source (after purchase)</a>
 </p>
