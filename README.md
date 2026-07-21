@@ -74,6 +74,23 @@ Daedalus-Lite gives you the **exact architecture** used by premium AI coding ass
 
 ---
 
+## What's Possible with Daedalus-Lite
+
+Daedalus-Lite's middleware architecture makes it infinitely extensible. See real-world examples of what you can build:
+
+- **Financial Assistant** - Add regulatory compliance and portfolio context
+- **Code Review Bot** - Automated PR analysis with security scanning
+- **Legal Document Analyzer** - Contract review with structured JSON output
+- **Medical Triage Assistant** - Symptom checking with urgency levels
+- **Customer Support Agent** - Knowledge base integration and sentiment analysis
+- **Language Tutor** - Adaptive learning with grammar correction
+- **Data Extraction Pipeline** - Turn unstructured text into validated data
+- **Multi-Step Orchestrator** - Chain middleware for logging, auth, rate limiting
+
+See the full [What's Possible guide](docs/whats-possible.html) with code examples for each use case.
+
+---
+
 <p align="center">
   <a href="docs/manual/index.html">📖 Preview the Manual</a> •
   <a href="https://github.com/bgill55/daedalus-lite-template">🔒 Access the Private Template (after purchase)</a>
