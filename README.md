@@ -89,6 +89,6 @@ See the full [What's Possible guide](docs/whats-possible.html) with code example
 ---
 
 <p align="center">
-  <a href="https://bgill55dev.gumroad.com/l/mkqrme">Get the Template via Gumroad</a> •
+  <a href="https://bgill55dev.gumroad.com/">Get the Template via Gumroad</a> •
   <a href="https://github.com/bgill55/daedalus-lite-template">View the Private Template Source (after purchase)</a>
 </p>
