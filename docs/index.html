@@ -645,7 +645,12 @@ export const errorHandlerMiddleware = async (
       <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));gap:24px;margin-bottom:40px;">
         <!-- Card 1: Finance -->
         <div style="background:var(--white);border-radius:12px;border:1px solid var(--card-border);padding:24px;box-shadow:0 4px 12px var(--shadow);">
-          <div style="font-size:2rem;margin-bottom:12px;">📊</div>
+          <div class="icon" style="margin-bottom:12px;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23"/>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+          </div>
           <h3 style="margin-bottom:8px;font-size:1.15rem;">Financial & Compliance Assistant</h3>
           <p style="color:var(--text-light);font-size:0.9rem;margin-bottom:16px;line-height:1.5;">
             Prepend portfolio context and automatically enforce regulatory disclaimer injection on output.
@@ -662,7 +667,14 @@ export const errorHandlerMiddleware = async (
 
         <!-- Card 2: Legal -->
         <div style="background:var(--white);border-radius:12px;border:1px solid var(--card-border);padding:24px;box-shadow:0 4px 12px var(--shadow);">
-          <div style="font-size:2rem;margin-bottom:12px;">⚖️</div>
+          <div class="icon" style="margin-bottom:12px;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+          </div>
           <h3 style="margin-bottom:8px;font-size:1.15rem;">Legal Document Analyzer</h3>
           <p style="color:var(--text-light);font-size:0.9rem;margin-bottom:16px;line-height:1.5;">
             Parse contract clauses and enforce strict JSON schema responses with automated validation.
@@ -679,7 +691,12 @@ export const errorHandlerMiddleware = async (
 
         <!-- Card 3: Code Review -->
         <div style="background:var(--white);border-radius:12px;border:1px solid var(--card-border);padding:24px;box-shadow:0 4px 12px var(--shadow);">
-          <div style="font-size:2rem;margin-bottom:12px;">🔍</div>
+          <div class="icon" style="margin-bottom:12px;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/>
+              <polyline points="8 6 2 12 8 18"/>
+            </svg>
+          </div>
           <h3 style="margin-bottom:8px;font-size:1.15rem;">Automated Code Review Bot</h3>
           <p style="color:var(--text-light);font-size:0.9rem;margin-bottom:16px;line-height:1.5;">
             Scan git diffs for security vulnerabilities, memory leaks, and generate structured PR checklists.
@@ -694,10 +711,14 @@ export const errorHandlerMiddleware = async (
 
         <!-- Card 4: Medical Triage -->
         <div style="background:var(--white);border-radius:12px;border:1px solid var(--card-border);padding:24px;box-shadow:0 4px 12px var(--shadow);">
-          <div style="font-size:2rem;margin-bottom:12px;">🩺</div>
+          <div class="icon" style="margin-bottom:12px;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
           <h3 style="margin-bottom:8px;font-size:1.15rem;">Medical Triage Assistant</h3>
           <p style="color:var(--text-light);font-size:0.9rem;margin-bottom:16px;line-height:1.5;">
-            Categorize patient symptoms into urgency levels (🔴 Emergency, 🟡 Urgent, 🟢 Routine).
+            Categorize patient symptoms into urgency levels (Critical, Urgent, Routine).
           </p>
           <div style="background:var(--code-bg);padding:12px;border-radius:8px;font-family:monospace;font-size:0.75rem;color:var(--text-light);line-height:1.4;">
             export const medicalTriage: Middleware = async (req, next) => {<br/>
@@ -709,7 +730,11 @@ export const errorHandlerMiddleware = async (
 
         <!-- Card 5: RAG & Support -->
         <div style="background:var(--white);border-radius:12px;border:1px solid var(--card-border);padding:24px;box-shadow:0 4px 12px var(--shadow);">
-          <div style="font-size:2rem;margin-bottom:12px;">💬</div>
+          <div class="icon" style="margin-bottom:12px;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
           <h3 style="margin-bottom:8px;font-size:1.15rem;">Customer Support RAG Agent</h3>
           <p style="color:var(--text-light);font-size:0.9rem;margin-bottom:16px;line-height:1.5;">
             Intercept customer tickets, inject relevant knowledge base articles, and log sentiment.
@@ -725,7 +750,13 @@ export const errorHandlerMiddleware = async (
 
         <!-- Card 6: Flagship Daedalus -->
         <div style="background:linear-gradient(135deg, rgba(37,99,235,0.05), rgba(79,70,229,0.05));border-radius:12px;border:2px solid var(--accent);padding:24px;box-shadow:0 4px 16px var(--shadow);">
-          <div style="font-size:2rem;margin-bottom:12px;">🏛️</div>
+          <div class="icon" style="margin-bottom:12px;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+              <polyline points="2 17 12 22 22 17"/>
+              <polyline points="2 12 12 17 22 12"/>
+            </svg>
+          </div>
           <h3 style="margin-bottom:8px;font-size:1.15rem;color:var(--primary);">Flagship Example: Daedalus</h3>
           <p style="color:var(--text-light);font-size:0.9rem;margin-bottom:16px;line-height:1.5;">
             Built on Daedalus-Lite and extended into a full multi-agent CLI with FTS5 indexing & autonomous loops.
