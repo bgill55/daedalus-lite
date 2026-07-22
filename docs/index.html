@@ -110,6 +110,11 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+
+    /* Ensure CTA buttons always have high-contrast bright text in dark & light mode */
+    a[data-gumroad-action="buy"], .cta-btn-bright {
+      color: #ffffff !important;
+    }
   </style>
   <script src="https://gumroad.com/js/gumroad.js"></script>
 </head>
@@ -134,9 +139,9 @@
           <svg id="theme-icon-moon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
         </button>
 
-        <a href="https://bgill55dev.gumroad.com/l/mkqrme" target="_blank" class="cursor-pointer inline-flex items-center gap-2 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 text-slate-950 font-bold px-5 py-2.5 rounded-xl shadow-lg shadow-sky-500/25 transition transform active:scale-95">
+        <a href="https://bgill55dev.gumroad.com/l/mkqrme" target="_blank" class="cursor-pointer inline-flex items-center gap-2 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 text-white font-bold px-5 py-2.5 rounded-xl shadow-lg shadow-sky-500/25 transition transform active:scale-95">
           <span>Get Template</span>
-          <span data-gumroad-field="price" class="text-xs bg-slate-950/20 px-2 py-0.5 rounded-full">$19</span>
+          <span data-gumroad-field="price" class="text-xs bg-white/20 text-white px-2 py-0.5 rounded-full">$19</span>
         </a>
       </div>
     </div>
@@ -160,7 +165,7 @@
 
     <!-- Buy CTA Buttons -->
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto mb-16">
-      <a href="https://bgill55dev.gumroad.com/l/mkqrme" target="_blank" class="cursor-pointer w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-gradient-to-r from-sky-400 via-sky-500 to-amber-400 hover:opacity-95 text-slate-950 font-extrabold text-lg px-8 py-4 rounded-2xl shadow-xl shadow-sky-500/20 transition transform hover:-translate-y-0.5 active:translate-y-0">
+      <a href="https://bgill55dev.gumroad.com/l/mkqrme" target="_blank" class="cursor-pointer w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-gradient-to-r from-sky-500 via-sky-600 to-amber-500 hover:opacity-95 text-white font-extrabold text-lg px-8 py-4 rounded-2xl shadow-xl shadow-sky-500/20 transition transform hover:-translate-y-0.5 active:translate-y-0">
         <span>Get Daedalus Lite Now</span>
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
       </a>
@@ -468,9 +473,9 @@ console.log(response.content);</code></pre>
         <div class="font-bold text-white" data-gumroad-field="name">Daedalus Lite Template</div>
         <div class="text-xs text-slate-400">Instant ZIP Download • Full Source Code</div>
       </div>
-      <a href="https://bgill55dev.gumroad.com/l/mkqrme" target="_blank" class="cursor-pointer w-full sm:w-auto ml-auto inline-flex items-center justify-center gap-3 bg-gradient-to-r from-sky-400 to-amber-400 text-slate-950 font-extrabold px-8 py-3 rounded-xl shadow-lg shadow-sky-500/20 transition transform active:scale-95">
+      <a href="https://bgill55dev.gumroad.com/l/mkqrme" target="_blank" class="cursor-pointer w-full sm:w-auto ml-auto inline-flex items-center justify-center gap-3 bg-gradient-to-r from-sky-500 via-sky-600 to-amber-500 text-white font-extrabold px-8 py-3 rounded-xl shadow-lg shadow-sky-500/20 transition transform active:scale-95">
         <span>Buy Now — $19</span>
-        <span data-gumroad-field="price" class="text-sm bg-slate-950/20 px-2.5 py-0.5 rounded-full">$19</span>
+        <span data-gumroad-field="price" class="text-sm bg-white/20 text-white px-2.5 py-0.5 rounded-full">$19</span>
       </a>
     </div>
   </footer>
