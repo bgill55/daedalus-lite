@@ -85,8 +85,11 @@
       <button onclick="runPreset('/help')" class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 hover:border-sky-500/50 hover:text-sky-400 text-slate-300 transition">
         /help
       </button>
-      <button onclick="runPreset('/model claude-sonnet-4-20250514')" class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 hover:border-sky-500/50 hover:text-sky-400 text-slate-300 transition">
-        Switch Model
+      <button onclick="runPreset('Roast my code')" class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 hover:border-amber-500/50 hover:text-amber-400 text-slate-300 transition">
+        Roast My Code
+      </button>
+      <button onclick="runPreset('Fix my infinite loop')" class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 hover:border-emerald-500/50 hover:text-emerald-400 text-slate-300 transition">
+        Fix Infinite Loop
       </button>
       <button onclick="runPreset('Write a quick fibonacci function in Python')" class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 hover:border-sky-500/50 hover:text-sky-400 text-slate-300 transition">
         Fibonacci Python
@@ -111,6 +114,7 @@
           <span class="text-xs text-slate-400 font-mono ml-2">daedalus-lite — interactive repl</span>
         </div>
         <div class="flex items-center gap-3 text-xs text-slate-500 font-mono">
+          <span id="query-counter-badge" class="text-amber-400 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded">sandbox: 3/3 queries left</span>
           <span id="active-model-badge" class="text-sky-400 bg-sky-500/10 border border-sky-500/20 px-2 py-0.5 rounded">model: auto</span>
           <span class="hidden sm:inline">Node.js v20.11.0</span>
         </div>
@@ -123,7 +127,7 @@
         <div class="text-slate-400 pb-2 border-b border-slate-800/60">
           <div class="text-sky-400 font-bold mb-1">Daedalus-Lite v1.0.0 (TypeScript ESM Starter Kit)</div>
           <div class="text-xs text-slate-500">Zero runtime dependencies • Multi-model LLM router • Embedded execution history</div>
-          <div class="text-xs text-slate-500 mt-1">Type <span class="text-sky-400 font-bold">/help</span> to see available commands or type any coding prompt.</div>
+          <div class="text-xs text-slate-500 mt-1">Type <span class="text-sky-400 font-bold">/help</span> to see available commands or ask a coding prompt.</div>
         </div>
 
       </div>
@@ -152,11 +156,23 @@
   </main>
 
   <script>
+    const MAX_FREE_QUERIES = 3;
     let currentModel = 'auto';
+    let queriesLeft = parseInt(localStorage.getItem('daedalus_demo_queries_left') || MAX_FREE_QUERIES);
+
     const outputEl = document.getElementById('terminal-output');
     const inputEl = document.getElementById('terminal-input');
     const formEl = document.getElementById('terminal-form');
     const modelBadge = document.getElementById('active-model-badge');
+    const queryBadge = document.getElementById('query-counter-badge');
+
+    function updateQueryBadge() {
+      queryBadge.textContent = `sandbox: ${queriesLeft}/${MAX_FREE_QUERIES} queries left`;
+      if (queriesLeft === 0) {
+        queryBadge.className = 'text-rose-400 bg-rose-500/10 border border-rose-500/20 px-2 py-0.5 rounded font-bold';
+      }
+    }
+    updateQueryBadge();
 
     function scrollToBottom() {
       outputEl.scrollTop = outputEl.scrollHeight;
@@ -205,7 +221,7 @@
           accumulated += (wi === 0 && li > 0 ? '\n' : (wi === 0 ? '' : ' ')) + words[wi];
           textContainer.innerHTML = formatMarkdown(accumulated);
           scrollToBottom();
-          await new Promise(r => setTimeout(r, Math.floor(Math.random() * 25) + 15));
+          await new Promise(r => setTimeout(r, Math.floor(Math.random() * 20) + 10));
         }
       }
 
@@ -219,13 +235,10 @@
     }
 
     function formatMarkdown(text) {
-      // Basic syntax highlighter / formatter
       let escaped = escapeHtml(text);
-      // Code blocks
       escaped = escaped.replace(/```(\w+)?\n([\s\S]*?)```/g, (match, lang, code) => {
         return `<pre class="bg-slate-950 p-3 rounded-lg border border-slate-800 text-sky-300 text-xs sm:text-sm my-2 overflow-x-auto"><code>${code}</code></pre>`;
       });
-      // Inline code
       escaped = escaped.replace(/`([^`]+)`/g, '<code class="text-sky-400 bg-slate-800/80 px-1.5 py-0.5 rounded text-xs">$1</code>');
       return escaped;
     }
@@ -242,24 +255,34 @@
       appendUserPrompt(input);
       inputEl.value = '';
 
+      // Commands (free - no rate limit deduction)
       if (input === '/help') {
         const helpText = `Available commands:
   <span class="text-sky-400">/help</span>                  - Show this help message
-  <span class="text-sky-400">/model &lt;modelName&gt;</span>     - Set the model for subsequent requests
+  <span class="text-sky-400">/model &lt;modelName&gt;</span>     - Set active router model
+  <span class="text-sky-400">/reset</span>                 - Reset demo query limit (for testing)
   <span class="text-sky-400">/clear</span>                 - Clear conversation history
-  <span class="text-sky-400">/exit</span>                  - Exit the REPL`;
+  <span class="text-sky-400">/exit</span>                  - Exit REPL session`;
         appendResponseBlock(helpText);
+        return;
+      }
+
+      if (input === '/reset') {
+        queriesLeft = MAX_FREE_QUERIES;
+        localStorage.setItem('daedalus_demo_queries_left', queriesLeft);
+        updateQueryBadge();
+        appendResponseBlock(`<span class="text-emerald-400">[DEMO RESET] Demo counter reset to ${MAX_FREE_QUERIES} queries.</span>`);
         return;
       }
 
       if (input.startsWith('/model')) {
         const parts = input.split(' ');
         if (parts.length < 2) {
-          appendResponseBlock(`<span class="text-amber-400">[WARN] Please specify a model name. Example: /model claude-sonnet-4-20250514</span>`);
+          appendResponseBlock(`<span class="text-amber-400">[WARN] Specify a model name. Example: /model claude-sonnet-4-20250514</span>`);
         } else {
           currentModel = parts[1];
           modelBadge.textContent = `model: ${currentModel}`;
-          appendResponseBlock(`<span class="text-emerald-400">Model set to: ${escapeHtml(currentModel)}</span>`);
+          appendResponseBlock(`<span class="text-emerald-400">Model router updated: ${escapeHtml(currentModel)}</span>`);
         }
         return;
       }
@@ -278,65 +301,154 @@
         return;
       }
 
-      // Simulated AI Responses
-      if (input.toLowerCase().includes('fibonacci')) {
-        const codeResponse = `Here is a recursive Fibonacci function in Python:
+      // Check Rate Limit for Prompt Executions
+      if (queriesLeft <= 0) {
+        const limitMsg = `<span class="text-rose-400 font-bold">⚠️ [DEMO RATE LIMIT REACHED: 0/3 QUERIES REMAINING]</span>
 
-\`\`\`python
-def fib(n):
-    if n <= 1:
-        return n
-    return fib(n-1) + fib(n-2)
-\`\`\`
+You've used all 3 free live demo queries for this sandbox session.
 
-For better performance with larger values, use memoization or iteration.`;
-        const meta = `└ ${currentModel} · 0 tool(s) · 45 out · 1.1s · 40.9 tok/s`;
-        await typeStreamResponse(codeResponse, meta);
+<span class="text-amber-300 font-semibold">Daedalus-Lite is 100% Local-First:</span>
+• Zero monthly cloud subscriptions
+• Zero rate limits when running on your machine
+• Zero telemetry or third-party middleman tracking
+
+<a href="../landing.html" class="inline-block mt-2 px-4 py-2 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 text-white font-bold text-xs rounded-lg transition shadow-md">Get Daedalus-Lite Starter Kit for $19 →</a>
+<span class="text-xs text-slate-500 block mt-1">(Or type <code class="text-sky-400">/reset</code> to reset the demo counter)</span>`;
+        appendResponseBlock(limitMsg);
         return;
       }
 
-      if (input.toLowerCase().includes('router') || input.toLowerCase().includes('refactor')) {
-        const response = `Refactored \`src/router.ts\` to use priority fallback strategy with timeout circuit breakers:
+      // Deduct Query Count
+      queriesLeft--;
+      localStorage.setItem('daedalus_demo_queries_left', queriesLeft);
+      updateQueryBadge();
+
+      // Witty Daedalus Response Engine
+      const lower = input.toLowerCase();
+
+      if (lower.includes('roast')) {
+        const response = `[Reviewer Agent] — The only agent whose whole personality is "that was wrong."
+
+Reviewing your code...
+1. Nested \`.map()\` inside a React \`useEffect\` with no dependency array. Bold strategy. Let's see if your RAM survives.
+2. Hardcoded secret API key on line 14. GitHub's secret scanner is already writing an email to your manager.
+3. \`catch(e) {}\` — swallowing exceptions like daily vitamins.
+
+Here is the refactored, non-catastrophic version:
 
 \`\`\`typescript
-export class InMemoryRouter {
-  private chain: ModelConfig[];
-
-  constructor(options: RouterOptions) {
-    this.chain = options.chain;
-  }
-
-  async dispatch(prompt: string): Promise<Response> {
-    for (const endpoint of this.chain) {
-      try {
-        return await this.callEndpoint(endpoint, prompt);
-      } catch (err) {
-        console.warn(\`Endpoint \${endpoint.name} failed, falling back...\`);
-      }
-    }
-    throw new Error('All model endpoints failed');
-  }
+// Clean, memory-leak-free implementation
+export async function fetchData<T>(url: string): Promise<T> {
+  const res = await fetch(url, { headers: { Authorization: \`Bearer \${process.env.API_KEY}\` } });
+  if (!res.ok) throw new Error(\`HTTP \${res.status}: \${res.statusText}\`);
+  return res.json();
 }
 \`\`\`
 
-Optimized with zero dependencies using native Fetch API.`;
-        const meta = `└ ${currentModel} · 1 tool(s) · 120 out · 2.1s · 57.1 tok/s`;
+You're welcome. Now go clean up your git log.`;
+        const meta = `└ ${currentModel} · ReviewerAgent · 1.2s · 68.4 tok/s · [Query ${MAX_FREE_QUERIES - queriesLeft}/${MAX_FREE_QUERIES}]`;
         await typeStreamResponse(response, meta);
         return;
       }
 
-      // Generic fallback simulation response
-      const genericResponse = `Received prompt: "${input}". 
+      if (lower.includes('infinite') || lower.includes('loop') || lower.includes('fix')) {
+        const response = `[Debugger Agent] — Like a detective in a noir film, except you're also the prime suspect who wrote the code.
 
-Daedalus-Lite processed this request through the multi-model router (\`${currentModel}\`).
+Inspecting stack trace...
+Found the issue: Your loop condition checked \`i < array.length\` while decrementing \`i--\`. It's currently in an existential crisis.
 
-• **Execution time**: 350ms
-• **Dependencies**: 0 runtime dependencies
-• **Format**: Clean ESM TypeScript
+Fixed logic:
 
-You can rebrand and extend this exact REPL logic for your own commercial products!`;
-      const meta = `└ ${currentModel} · 0 tool(s) · 52 out · 0.8s · 65.0 tok/s`;
-      await typeStreamResponse(genericResponse, meta);
+\`\`\`python
+# Corrected loop logic with explicit bounds
+def process_items(items):
+    for i, item in enumerate(items):
+        # Explicit index progression without CPU fan takeoff
+        print(f"Processing index {i}: {item}")
+\`\`\`
+
+Your CPU fan can now spin down to human levels.`;
+        const meta = `└ ${currentModel} · DebuggerAgent · 0.9s · 74.1 tok/s · [Query ${MAX_FREE_QUERIES - queriesLeft}/${MAX_FREE_QUERIES}]`;
+        await typeStreamResponse(response, meta);
+        return;
+      }
+
+      if (lower.includes('fibonacci')) {
+        const response = `[Coder Agent] — The one who actually writes code while the other agents hold 45-minute meetings about it.
+
+Here is an optimized Fibonacci function in Python using memoization so it doesn't melt your laptop:
+
+\`\`\`python
+from functools import lru_cache
+
+@lru_cache(maxsize=None)
+def fib(n: int) -> int:
+    if n < 2:
+        return n
+    return fib(n - 1) + fib(n - 2)
+
+# O(n) time complexity, zero headaches
+print(fib(100))
+\`\`\``;
+        const meta = `└ ${currentModel} · CoderAgent · 0.8s · 82.5 tok/s · [Query ${MAX_FREE_QUERIES - queriesLeft}/${MAX_FREE_QUERIES}]`;
+        await typeStreamResponse(response, meta);
+        return;
+      }
+
+      if (lower.includes('router') || lower.includes('refactor')) {
+        const response = `[Orchestrator Agent] — Assigning the Coder sub-agent to execute while I coordinate from a safe distance.
+
+Refactored \`src/router.ts\` to use multi-model priority fallback with native zero-dependency Fetch:
+
+\`\`\`typescript
+export class ModelRouter {
+  private endpoints: ProviderConfig[];
+
+  constructor(config: RouterOptions) {
+    this.endpoints = config.endpoints;
+  }
+
+  async execute(prompt: string): Promise<string> {
+    for (const provider of this.endpoints) {
+      try {
+        return await provider.complete(prompt);
+      } catch (err) {
+        console.warn(\`[Router] \${provider.name} offline. Falling back...\`);
+      }
+    }
+    throw new Error('All model providers failed');
+  }
+}
+\`\`\`
+
+Optimized architecture: 0 runtime dependencies, 100% ESM TypeScript.`;
+        const meta = `└ ${currentModel} · OrchestratorAgent · 1.4s · 61.2 tok/s · [Query ${MAX_FREE_QUERIES - queriesLeft}/${MAX_FREE_QUERIES}]`;
+        await typeStreamResponse(response, meta);
+        return;
+      }
+
+      // Generic Prompt Response with Dry Wit
+      const response = `[Daedalus Agent] Processed prompt: "${escapeHtml(input)}"
+
+Analysis complete:
+• **Router Strategy**: Priority round-robin via \`${currentModel}\`
+• **Dependency Footprint**: Exactly 0 \`node_modules\` bloated dependencies
+• **Local Execution**: Direct process stream (350ms)
+
+\`\`\`typescript
+// Generated solution snippet
+export function daedalusHandler(query: string) {
+  return {
+    status: 'success',
+    input: query,
+    summary: 'Clean TypeScript output ready for your CLI product.'
+  };
+}
+\`\`\`
+
+Want to run this CLI without sandboxes or query limits? Build your own local agent with Daedalus-Lite!`;
+      const meta = `└ ${currentModel} · DaedalusAgent · 1.0s · 65.0 tok/s · [Query ${MAX_FREE_QUERIES - queriesLeft}/${MAX_FREE_QUERIES}]`;
+      await typeStreamResponse(response, meta);
     }
 
     formEl.addEventListener('submit', (e) => {
@@ -344,7 +456,6 @@ You can rebrand and extend this exact REPL logic for your own commercial product
       handleInput(inputEl.value);
     });
 
-    // Auto-focus input on page load
     window.addEventListener('DOMContentLoaded', () => {
       inputEl.focus();
     });
