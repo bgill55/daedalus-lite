@@ -120,9 +120,21 @@
       background: linear-gradient(135deg, #0369a1 0%, #075985 100%) !important;
       color: #ffffff !important;
     }
-    /* Most Popular pill — amber background is always bright, so always use near-black text */
-    .from-amber-400.to-amber-500, [class*="from-amber-400"][class*="to-amber-500"] {
+    /* Most Popular pill — fully self-contained, no Tailwind dependency */
+    .most-popular-pill {
+      position: absolute !important;
+      top: -14px !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      background: linear-gradient(90deg, #fbbf24 0%, #f59e0b 100%) !important;
       color: #020617 !important;
+      font-size: 0.7rem !important;
+      font-weight: 800 !important;
+      padding: 4px 14px !important;
+      border-radius: 9999px !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.08em !important;
+      white-space: nowrap !important;
     }
   </style>
   <script src="https://gumroad.com/js/gumroad.js"></script>
@@ -397,7 +409,7 @@ console.log(response.content);</code></pre>
 
       <!-- Pro (Featured) -->
       <div class="glass p-8 rounded-3xl border-2 border-amber-500/60 text-center relative">
-        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 text-xs font-extrabold px-4 py-1 rounded-full uppercase tracking-wider">Most Popular</div>
+        <div class="most-popular-pill">Most Popular</div>
         <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Pro</h3>
         <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">For serious builders</p>
         <div class="text-4xl font-extrabold text-slate-900 dark:text-white mb-2">$49</div>
