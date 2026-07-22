@@ -1,10 +1,294 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="dark scroll-smooth">
 <head>
-  <meta http-equiv="refresh" content="0; url=landing.html" />
-  <title>Redirecting...</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brian Gill (@bgill55dev) — Local AI & Developer Tools</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+            },
+            accent: {
+              400: '#fbbf24',
+              500: '#f59e0b',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700;800&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    code, pre {
+      font-family: 'Fira Code', monospace;
+    }
+
+    /* Dark Mode Core Overrides */
+    html.dark, html.dark body, html.dark #app {
+      background-color: #020617 !important;
+      color: #f8fafc !important;
+    }
+    html.dark .glass {
+      background: rgba(15, 23, 42, 0.85) !important;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    }
+    html.dark .text-white, html.dark h1, html.dark h2, html.dark h3 {
+      color: #ffffff !important;
+    }
+    html.dark .text-slate-400 {
+      color: #94a3b8 !important;
+    }
+    html.dark #theme-toggle {
+      background-color: #0f172a !important;
+      border-color: #1e293b !important;
+      color: #f8fafc !important;
+    }
+
+    /* Light Mode Core Overrides */
+    html:not(.dark), html:not(.dark) body, html:not(.dark) #app {
+      background-color: #f8fafc !important;
+      color: #0f172a !important;
+    }
+    html:not(.dark) .glass {
+      background: rgba(255, 255, 255, 0.92) !important;
+      border: 1px solid rgba(0, 0, 0, 0.1) !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+    html:not(.dark) .text-white, html:not(.dark) h1, html:not(.dark) h2, html:not(.dark) h3 {
+      color: #0f172a !important;
+    }
+    html:not(.dark) .text-slate-400 {
+      color: #475569 !important;
+    }
+    html:not(.dark) #theme-toggle {
+      background-color: #f1f5f9 !important;
+      border-color: #cbd5e1 !important;
+      color: #0f172a !important;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #0284c7 0%, #d97706 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    html.dark .gradient-text {
+      background: linear-gradient(135deg, #38bdf8 0%, #fbbf24 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
 </head>
-<body>
-  Redirecting to <a href="landing.html">Daedalus Lite landing page</a>.
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 antialiased selection:bg-sky-500 selection:text-white min-h-screen transition-colors duration-300 flex flex-col justify-between" id="app">
+
+  <!-- Theme Toggle Floating Button -->
+  <div class="fixed top-5 right-5 z-50">
+    <button id="theme-toggle" type="button" aria-label="Toggle Theme" class="p-3 rounded-2xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white transition shadow-lg backdrop-blur-md">
+      <svg id="theme-icon-sun" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+      <svg id="theme-icon-moon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+    </button>
+  </div>
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
+    
+    <!-- Profile Hero Section -->
+    <header class="text-center mb-16 relative">
+      <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-[500px] h-[250px] bg-sky-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+
+      <!-- Avatar / Brand Badge -->
+      <div class="inline-flex p-1 rounded-3xl bg-gradient-to-tr from-sky-500 to-amber-400 mb-6 shadow-xl shadow-sky-500/20">
+        <div class="h-24 w-24 rounded-[22px] bg-slate-950 flex items-center justify-center font-black text-4xl text-sky-400">
+          ⚡
+        </div>
+      </div>
+
+      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-3 text-white">
+        Brian Gill <span class="text-slate-500 text-2xl font-medium">(@bgill55dev)</span>
+      </h1>
+
+      <p class="text-lg text-sky-400 font-semibold mb-4">
+        Local-First AI Coding Tools & Autonomous Agent Architectures
+      </p>
+
+      <p class="text-slate-400 max-w-2xl mx-auto text-base leading-relaxed mb-8">
+        Building high-performance TypeScript tooling, embedded model routers, and starter kits to help developers own their AI workflow.
+      </p>
+
+      <!-- Social & Repository Links -->
+      <div class="flex items-center justify-center gap-3 flex-wrap">
+        <a href="https://github.com/bgill55" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl glass border border-slate-800 text-sm font-semibold text-slate-300 hover:text-white hover:border-sky-500/50 transition">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span>GitHub (@bgill55)</span>
+        </a>
+        <a href="https://github.com/bgill55/daedalus" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl glass border border-slate-800 text-sm font-semibold text-slate-300 hover:text-white hover:border-amber-500/50 transition">
+          <span>⚡ Daedalus CLI</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Featured Products Section -->
+    <section class="mb-16">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
+          <span>📦</span>
+          <span>Featured Products</span>
+        </h2>
+        <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">1 Product Available</span>
+      </div>
+
+      <!-- Product Card -->
+      <div class="glass rounded-3xl border border-slate-800/80 p-6 sm:p-8 hover:border-sky-500/40 transition duration-300 shadow-2xl relative overflow-hidden group">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          
+          <!-- Product Cover Image -->
+          <div class="md:col-span-6 rounded-2xl overflow-hidden border border-slate-800 bg-slate-900 group-hover:scale-[1.02] transition duration-300">
+            <img src="https://public-files.gumroad.com/k8m47r3fvjtpf41g0lju13o50ykf" alt="Daedalus-Lite Cover" class="w-full h-auto object-cover" />
+          </div>
+
+          <!-- Product Meta & CTA -->
+          <div class="md:col-span-6 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-2 mb-3">
+                <span class="px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-xs font-bold uppercase tracking-wider">
+                  TypeScript Starter
+                </span>
+                <span class="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold uppercase tracking-wider">
+                  Zero Deps
+                </span>
+              </div>
+
+              <h3 class="text-2xl font-extrabold text-white mb-3">
+                Daedalus-Lite Template
+              </h3>
+
+              <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                Production-ready starter template for building your own local AI coding assistant in 100% TypeScript. Multi-model router (OpenAI, Anthropic, Ollama, LM Studio), execution history engine, zero runtime dependencies, and Jest ESM suite.
+              </p>
+            </div>
+
+            <div class="flex items-center justify-between gap-4 pt-4 border-t border-slate-800/80">
+              <div>
+                <span class="text-xs text-slate-500 block uppercase font-medium">Price</span>
+                <span class="text-2xl font-black text-amber-400">$19</span>
+              </div>
+
+              <a href="https://bgill55dev.gumroad.com/l/mkqrme" class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-sky-400 to-amber-400 hover:opacity-95 text-slate-950 font-extrabold px-6 py-3 rounded-xl shadow-lg shadow-sky-500/20 transition transform active:scale-95">
+                <span>View Product Page</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Open Source & Architecture Showcase -->
+    <section class="mb-16">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
+          <span>🛠️</span>
+          <span>Open Source & Core Tech</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="glass p-6 rounded-2xl border border-slate-800/80">
+          <div class="h-10 w-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 font-bold mb-4">
+            ⚡
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Daedalus CLI</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4">
+            Local-first AI coding CLI featuring embedded model router, multi-agent orchestration, and FTS5 codebase indexing.
+          </p>
+          <a href="https://github.com/bgill55/daedalus" target="_blank" rel="noopener noreferrer" class="text-sky-400 text-sm font-semibold hover:underline inline-flex items-center gap-1">
+            <span>View GitHub Repository</span> →
+          </a>
+        </div>
+
+        <div class="glass p-6 rounded-2xl border border-slate-800/80">
+          <div class="h-10 w-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 font-bold mb-4">
+            🧠
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Autonomous Agent Design</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-4">
+            Custom subagent orchestration systems built for autonomous coding, code review, test execution, and release management.
+          </p>
+          <a href="https://bgill55.github.io/daedalus-lite/" target="_blank" rel="noopener noreferrer" class="text-amber-400 text-sm font-semibold hover:underline inline-flex items-center gap-1">
+            <span>Explore Architecture Site</span> →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Email Newsletter / Follow Audience Section -->
+    <section class="glass p-8 rounded-3xl border border-slate-800/80 text-center relative overflow-hidden">
+      <div class="max-w-md mx-auto">
+        <div class="h-12 w-12 rounded-2xl bg-gradient-to-tr from-sky-500 to-amber-400 p-0.5 mx-auto mb-4">
+          <div class="h-full w-full bg-slate-950 rounded-[14px] flex items-center justify-center text-xl">
+            📬
+          </div>
+        </div>
+
+        <h3 class="text-2xl font-bold text-white mb-2">Join the VIP Developer List</h3>
+        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+          Subscribe to receive early access to new AI starter templates, release updates, and local LLM tutorials.
+        </p>
+
+        <!-- Gumroad Automatic Follow Form -->
+        <form data-gumroad-follow class="flex flex-col sm:flex-row gap-3">
+          <input type="email" placeholder="Enter your email address" required class="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 transition" />
+          <button type="submit" class="bg-gradient-to-r from-sky-400 to-amber-400 text-slate-950 font-extrabold px-6 py-3 rounded-xl shadow-lg shadow-sky-500/20 hover:opacity-95 transition active:scale-95 whitespace-nowrap">
+            Follow
+          </button>
+        </form>
+
+        <div data-gumroad-follow-message class="hidden text-emerald-400 text-sm mt-4 font-semibold">
+          ✨ Thanks for following! You'll receive product updates and new releases directly in your inbox.
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-slate-800/80 py-8 text-center text-xs text-slate-500">
+    <div class="max-w-4xl mx-auto px-4">
+      <p>© 2026 Brian Gill (@bgill55dev). All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Theme Switching Script -->
+  <script>
+    (function() {
+      const toggleBtn = document.getElementById('theme-toggle');
+      const sunIcon = document.getElementById('theme-icon-sun');
+      const moonIcon = document.getElementById('theme-icon-moon');
+
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', function() {
+          const isDark = document.documentElement.classList.toggle('dark');
+          if (isDark) {
+            sunIcon.classList.add('hidden');
+            moonIcon.classList.remove('hidden');
+          } else {
+            sunIcon.classList.remove('hidden');
+            moonIcon.classList.add('hidden');
+          }
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
