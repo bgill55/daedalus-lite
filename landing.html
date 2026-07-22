@@ -47,57 +47,57 @@
       font-family: 'Fira Code', monospace;
     }
 
-    /* Dark Mode Core Overrides */
+    /* Dark mode overrides — specificity html.dark .foo beats Tailwind */
     html.dark, html.dark body, html.dark #app {
-      background-color: #020617 !important;
-      color: #f8fafc !important;
+      background-color: #020617;
+      color: #f8fafc;
     }
     html.dark .glass {
-      background: rgba(15, 23, 42, 0.85) !important;
+      background: rgba(15, 23, 42, 0.85);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      border: 1px solid rgba(255, 255, 255, 0.12);
     }
     html.dark .text-white, html.dark h1, html.dark h2, html.dark h3 {
-      color: #ffffff !important;
+      color: #ffffff;
     }
     html.dark .text-slate-400 {
-      color: #94a3b8 !important;
+      color: #94a3b8;
     }
     html.dark nav, html.dark footer {
-      background: rgba(15, 23, 42, 0.85) !important;
-      border-color: rgba(255, 255, 255, 0.12) !important;
+      background: rgba(15, 23, 42, 0.85);
+      border-color: rgba(255, 255, 255, 0.12);
     }
     html.dark #theme-toggle {
-      background-color: #0f172a !important;
-      border-color: #1e293b !important;
-      color: #f8fafc !important;
+      background-color: #0f172a;
+      border-color: #1e293b;
+      color: #f8fafc;
     }
 
-    /* Light Mode Core Overrides */
+    /* Light mode overrides */
     html:not(.dark), html:not(.dark) body, html:not(.dark) #app {
-      background-color: #f8fafc !important;
-      color: #0f172a !important;
+      background-color: #f8fafc;
+      color: #0f172a;
     }
     html:not(.dark) .glass {
-      background: rgba(255, 255, 255, 0.92) !important;
-      border: 1px solid rgba(0, 0, 0, 0.1) !important;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(0, 0, 0, 0.1);
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     }
     html:not(.dark) .text-white, html:not(.dark) h1, html:not(.dark) h2, html:not(.dark) h3 {
-      color: #0f172a !important;
+      color: #0f172a;
     }
     html:not(.dark) .text-slate-400 {
-      color: #475569 !important;
+      color: #475569;
     }
     html:not(.dark) nav, html:not(.dark) footer {
-      background: rgba(255, 255, 255, 0.92) !important;
-      border-color: rgba(0, 0, 0, 0.08) !important;
+      background: rgba(255, 255, 255, 0.92);
+      border-color: rgba(0, 0, 0, 0.08);
     }
     html:not(.dark) #theme-toggle {
-      background-color: #f1f5f9 !important;
-      border-color: #cbd5e1 !important;
-      color: #0f172a !important;
+      background-color: #f1f5f9;
+      border-color: #cbd5e1;
+      color: #0f172a;
     }
 
     .gradient-text {
@@ -111,6 +111,7 @@
       -webkit-text-fill-color: transparent;
     }
   </style>
+  <script src="https://gumroad.com/js/gumroad.js"></script>
 </head>
 <body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 antialiased selection:bg-sky-500 selection:text-white min-h-screen transition-colors duration-300" id="app">
 
@@ -135,7 +136,7 @@
 
         <a data-gumroad-action="buy" class="cursor-pointer inline-flex items-center gap-2 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 text-slate-950 font-bold px-5 py-2.5 rounded-xl shadow-lg shadow-sky-500/25 transition transform active:scale-95">
           <span>Get Template</span>
-          <span data-gumroad-field="price" class="text-xs bg-slate-950/20 px-2 py-0.5 rounded-full">$29</span>
+          <span data-gumroad-field="price" class="text-xs bg-slate-950/20 px-2 py-0.5 rounded-full">$19</span>
         </a>
       </div>
     </div>
@@ -168,9 +169,22 @@
       </a>
     </div>
 
-    <!-- Product Cover Banner Image -->
-    <div class="mt-12 max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-slate-800/80 glass p-2">
-      <img src="https://public-files.gumroad.com/k8m47r3fvjtpf41g0lju13o50ykf" alt="Daedalus Lite Cover" class="w-full h-auto rounded-2xl object-cover" />
+    <!-- Terminal Screenshot + Live Demo -->
+    <div class="mt-12 max-w-4xl mx-auto">
+      <div class="rounded-3xl overflow-hidden shadow-2xl border border-slate-800/80 glass p-2 mb-4">
+        <img src="docs/terminal-screenshot.png" alt="Daedalus Lite REPL in action — /help, /model, and interactive coding" class="w-full h-auto rounded-2xl object-cover" />
+      </div>
+      <p class="text-sm text-slate-400 mb-6 text-center">The built-in REPL with <code class="text-sky-400">/help</code>, <code class="text-sky-400">/model</code>, <code class="text-sky-400">/clear</code>, and <code class="text-sky-400">/exit</code> commands.</p>
+      <div class="flex items-center justify-center gap-4">
+        <a href="https://github.com/bgill55/daedalus-lite" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-slate-700 text-slate-200 font-semibold transition transform active:scale-95">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          View Source on GitHub
+        </a>
+        <a href="docs/live-demo.html" target="_blank" class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 text-slate-950 font-bold px-6 py-3 rounded-xl shadow-lg shadow-sky-500/25 transition transform active:scale-95">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Launch Live Demo
+        </a>
+      </div>
     </div>
 
     <!-- Product Spec Badges -->
@@ -271,6 +285,156 @@ console.log(response.content);</code></pre>
     </div>
   </section>
 
+  <!-- What's Possible Section -->
+  <section class="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-4 text-center">What You Can Build With It</h2>
+    <p class="text-slate-400 max-w-2xl mx-auto text-center mb-12">
+      Daedalus Lite's middleware architecture lets you intercept, enrich, and format AI interactions for any domain. Drop in a middleware function and you've got a specialized AI agent.
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Card 1: Code Review -->
+      <div class="glass p-6 rounded-2xl border border-slate-800 group hover:border-sky-500/50 transition">
+        <div class="text-2xl mb-3">🔍</div>
+        <h3 class="text-lg font-bold text-white mb-2">Automated Code Review Bot</h3>
+        <p class="text-sm text-slate-400 mb-3">Scan git diffs for security vulnerabilities and generate structured PR checklists.</p>
+        <pre class="text-[11px] text-slate-400 bg-slate-900/50 p-3 rounded-xl overflow-x-auto leading-relaxed"><code><span class="text-sky-400">export const</span> codeReviewer<span class="text-slate-500">:</span> Middleware <span class="text-slate-500">=</span> <span class="text-sky-400">async</span> (req, next) <span class="text-slate-500">=&gt;</span> {
+  req.prompt <span class="text-slate-500">=</span> <span class="text-amber-300">`Review for security: ${req.prompt}`</span>;
+  <span class="text-sky-400">return</span> next();
+};</code></pre>
+      </div>
+
+      <!-- Card 2: Customer Support -->
+      <div class="glass p-6 rounded-2xl border border-slate-800 group hover:border-amber-500/50 transition">
+        <div class="text-2xl mb-3">💬</div>
+        <h3 class="text-lg font-bold text-white mb-2">Customer Support RAG Agent</h3>
+        <p class="text-sm text-slate-400 mb-3">Inject knowledge base articles into prompts, log sentiment, and enforce response formatting.</p>
+        <pre class="text-[11px] text-slate-400 bg-slate-900/50 p-3 rounded-xl overflow-x-auto leading-relaxed"><code><span class="text-sky-400">export const</span> supportRAG<span class="text-slate-500">:</span> Middleware <span class="text-slate-500">=</span> <span class="text-sky-400">async</span> (req, next) <span class="text-slate-500">=&gt;</span> {
+  <span class="text-sky-400">const</span> kb <span class="text-slate-500">=</span> <span class="text-sky-400">await</span> searchDocs(req.prompt);
+  req.prompt <span class="text-slate-500">=</span> <span class="text-amber-300">`KB: ${kb}\nUser: ${req.prompt}`</span>;
+  <span class="text-sky-400">return</span> next();
+};</code></pre>
+      </div>
+
+      <!-- Card 3: Financial Compliance -->
+      <div class="glass p-6 rounded-2xl border border-slate-800 group hover:border-emerald-500/50 transition">
+        <div class="text-2xl mb-3">💰</div>
+        <h3 class="text-lg font-bold text-white mb-2">Financial Compliance Assistant</h3>
+        <p class="text-sm text-slate-400 mb-3">Prepend portfolio context and enforce regulatory disclaimers on every output.</p>
+        <pre class="text-[11px] text-slate-400 bg-slate-900/50 p-3 rounded-xl overflow-x-auto leading-relaxed"><code><span class="text-sky-400">export const</span> financialGuard<span class="text-slate-500">:</span> Middleware <span class="text-slate-500">=</span> <span class="text-sky-400">async</span> (req, next) <span class="text-slate-500">=&gt;</span> {
+  <span class="text-sky-400">const</span> res <span class="text-slate-500">=</span> <span class="text-sky-400">await</span> next();
+  res.content <span class="text-slate-500">+=</span> <span class="text-amber-300">'\nNot financial advice.'</span>;
+  <span class="text-sky-400">return</span> res;
+};</code></pre>
+      </div>
+    </div>
+    <div class="text-center mt-8">
+      <a href="docs/whats-possible.html" class="inline-flex items-center gap-2 text-sm text-sky-400 hover:text-sky-300 font-semibold transition">
+        Read the full 8+ use cases guide →
+      </a>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-4">
+        One Price. You Own It Forever.
+      </h2>
+      <p class="text-slate-400 max-w-xl mx-auto">
+        No subscriptions. No hidden fees. No per-seat licensing. Buy once, rebrand, and sell your own AI CLI product.
+      </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+      <!-- Starter -->
+      <div class="glass p-8 rounded-3xl border border-slate-800 text-center">
+        <h3 class="text-lg font-bold text-white mb-1">Starter</h3>
+        <p class="text-xs text-slate-400 mb-4">For indie developers</p>
+        <div class="text-4xl font-extrabold text-white mb-2">$19</div>
+        <p class="text-xs text-slate-500 mb-6">one-time purchase</p>
+        <ul class="text-sm text-slate-400 space-y-3 mb-8 text-left">
+          <li class="flex items-start gap-2">
+            <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Full TypeScript source code
+          </li>
+          <li class="flex items-start gap-2">
+            <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            PDF setup manual
+          </li>
+          <li class="flex items-start gap-2">
+            <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Branding guidelines
+          </li>
+          <li class="flex items-start gap-2">
+            <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Email support
+          </li>
+        </ul>
+        <a data-gumroad-action="buy" class="cursor-pointer inline-flex items-center justify-center gap-2 w-full bg-sky-500/10 border border-sky-500/20 hover:bg-sky-500/20 text-sky-400 font-bold px-6 py-3 rounded-xl transition transform active:scale-95">
+          Get Starter
+        </a>
+      </div>
+
+      <!-- Pro (Featured) -->
+      <div class="glass p-8 rounded-3xl border-2 border-amber-500/60 text-center relative">
+        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 text-xs font-extrabold px-4 py-1 rounded-full uppercase tracking-wider">Most Popular</div>
+        <h3 class="text-lg font-bold text-white mb-1">Pro</h3>
+        <p class="text-xs text-slate-400 mb-4">For serious builders</p>
+        <div class="text-4xl font-extrabold text-white mb-2">$49</div>
+        <p class="text-xs text-slate-500 mb-6">one-time purchase</p>
+        <ul class="text-sm text-slate-400 space-y-3 mb-8 text-left">
+          <li class="flex items-start gap-2">
+            <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Everything in Starter
+          </li>
+          <li class="flex items-start gap-2">
+            <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Pre-compiled binaries
+          </li>
+          <li class="flex items-start gap-2">
+            <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Custom theme & banner
+          </li>
+          <li class="flex items-start gap-2">
+            <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Priority support
+          </li>
+        </ul>
+        <a data-gumroad-action="buy" class="cursor-pointer inline-flex items-center justify-center gap-2 w-full bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-bold px-6 py-3 rounded-xl shadow-lg shadow-amber-500/20 transition transform active:scale-95">
+          Get Pro
+        </a>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="glass p-8 rounded-3xl border border-slate-800 text-center">
+        <h3 class="text-lg font-bold text-white mb-1">Enterprise</h3>
+        <p class="text-xs text-slate-400 mb-4">For teams & agencies</p>
+        <div class="text-4xl font-extrabold text-white mb-2">$249</div>
+        <p class="text-xs text-slate-500 mb-6">one-time purchase</p>
+        <ul class="text-sm text-slate-400 space-y-3 mb-8 text-left">
+          <li class="flex items-start gap-2">
+            <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Everything in Pro
+          </li>
+          <li class="flex items-start gap-2">
+            <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            1-hour setup call
+          </li>
+          <li class="flex items-start gap-2">
+            <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Custom integrations
+          </li>
+          <li class="flex items-start gap-2">
+            <svg class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            White-glove onboarding
+          </li>
+        </ul>
+        <a data-gumroad-action="buy" class="cursor-pointer inline-flex items-center justify-center gap-2 w-full bg-sky-500/10 border border-sky-500/20 hover:bg-sky-500/20 text-sky-400 font-bold px-6 py-3 rounded-xl transition transform active:scale-95">
+          Get Enterprise
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- FAQ Section -->
   <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
     <h2 class="text-3xl font-bold text-center text-white mb-12">Frequently Asked Questions</h2>
@@ -305,8 +469,8 @@ console.log(response.content);</code></pre>
         <div class="text-xs text-slate-400">Instant ZIP Download • Full Source Code</div>
       </div>
       <a data-gumroad-action="buy" class="cursor-pointer w-full sm:w-auto ml-auto inline-flex items-center justify-center gap-3 bg-gradient-to-r from-sky-400 to-amber-400 text-slate-950 font-extrabold px-8 py-3 rounded-xl shadow-lg shadow-sky-500/20 transition transform active:scale-95">
-        <span>Buy Now</span>
-        <span data-gumroad-field="price" class="text-sm bg-slate-950/20 px-2.5 py-0.5 rounded-full">$29</span>
+        <span>Buy Now — $19</span>
+        <span data-gumroad-field="price" class="text-sm bg-slate-950/20 px-2.5 py-0.5 rounded-full">$19</span>
       </a>
     </div>
   </footer>

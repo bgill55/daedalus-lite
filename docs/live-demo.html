@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daedalus Lite — Live Interactive Demo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #020617;
+      color: #f8fafc;
+    }
+    .font-mono {
+      font-family: 'Fira Code', monospace;
+    }
+    .terminal-scrollbar::-webkit-scrollbar {
+      width: 8px;
+    }
+    .terminal-scrollbar::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.6);
+    }
+    .terminal-scrollbar::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+    .cursor-blink {
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-slate-950 text-slate-100 flex flex-col antialiased selection:bg-sky-500 selection:text-white">
+
+  <!-- Header -->
+  <header class="border-b border-slate-800/80 bg-slate-900/60 backdrop-blur-md px-4 sm:px-6 py-3 flex items-center justify-between sticky top-0 z-50">
+    <div class="flex items-center gap-3">
+      <a href="../landing.html" class="flex items-center gap-2 hover:opacity-80 transition">
+        <div class="h-7 w-7 rounded-lg bg-gradient-to-tr from-sky-500 to-amber-400 p-0.5 flex items-center justify-center">
+          <div class="h-full w-full bg-slate-950 rounded-[6px] flex items-center justify-center font-bold text-sky-400 text-xs">
+            ⚡
+          </div>
+        </div>
+        <span class="font-extrabold text-lg text-white tracking-tight">Daedalus Lite</span>
+      </a>
+      <span class="text-xs px-2.5 py-0.5 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 font-medium">Interactive REPL Demo</span>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <a href="../landing.html" class="text-xs sm:text-sm text-slate-400 hover:text-white transition flex items-center gap-1">
+        <span>← Back to Landing Page</span>
+      </a>
+      <a href="https://github.com/bgill55/daedalus-lite" target="_blank" class="hidden sm:inline-flex items-center gap-1.5 bg-sky-500/10 hover:bg-sky-500/20 border border-sky-500/30 text-sky-400 text-xs font-semibold px-3 py-1.5 rounded-lg transition">
+        <span>GitHub Repo</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1 max-w-5xl w-full mx-auto p-4 sm:p-6 flex flex-col justify-center">
+    
+    <!-- Quick Demo Preset Buttons -->
+    <div class="mb-4 flex flex-wrap items-center gap-2 text-xs">
+      <span class="text-slate-400 font-semibold uppercase tracking-wider text-[11px] mr-1">Quick Prompts:</span>
+      <button onclick="runPreset('/help')" class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 hover:border-sky-500/50 hover:text-sky-400 text-slate-300 transition">
+        /help
+      </button>
+      <button onclick="runPreset('/model claude-sonnet-4-20250514')" class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 hover:border-sky-500/50 hover:text-sky-400 text-slate-300 transition">
+        Switch Model
+      </button>
+      <button onclick="runPreset('Write a quick fibonacci function in Python')" class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 hover:border-sky-500/50 hover:text-sky-400 text-slate-300 transition">
+        Fibonacci Python
+      </button>
+      <button onclick="runPreset('Refactor TypeScript router logic for performance')" class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 hover:border-sky-500/50 hover:text-sky-400 text-slate-300 transition">
+        Refactor Router
+      </button>
+      <button onclick="runPreset('/clear')" class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 hover:border-rose-500/50 hover:text-rose-400 text-slate-400 transition ml-auto">
+        Clear Output
+      </button>
+    </div>
+
+    <!-- Terminal Window -->
+    <div class="w-full bg-slate-900/90 rounded-2xl border border-slate-800 shadow-2xl overflow-hidden flex flex-col h-[600px]">
+      
+      <!-- Terminal Window Bar -->
+      <div class="bg-slate-950/80 px-4 py-3 border-b border-slate-800 flex items-center justify-between select-none">
+        <div class="flex items-center gap-2">
+          <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+          <div class="w-3 h-3 rounded-full bg-amber-500/80"></div>
+          <div class="w-3 h-3 rounded-full bg-emerald-500/80"></div>
+          <span class="text-xs text-slate-400 font-mono ml-2">daedalus-lite — interactive repl</span>
+        </div>
+        <div class="flex items-center gap-3 text-xs text-slate-500 font-mono">
+          <span id="active-model-badge" class="text-sky-400 bg-sky-500/10 border border-sky-500/20 px-2 py-0.5 rounded">model: auto</span>
+          <span class="hidden sm:inline">Node.js v20.11.0</span>
+        </div>
+      </div>
+
+      <!-- Terminal Output Scroll Box -->
+      <div id="terminal-output" class="flex-1 p-4 font-mono text-sm sm:text-base overflow-y-auto terminal-scrollbar space-y-3 leading-relaxed">
+        
+        <!-- Welcome Banner -->
+        <div class="text-slate-400 pb-2 border-b border-slate-800/60">
+          <div class="text-sky-400 font-bold mb-1">Daedalus-Lite v1.0.0 (TypeScript ESM Starter Kit)</div>
+          <div class="text-xs text-slate-500">Zero runtime dependencies • Multi-model LLM router • Embedded execution history</div>
+          <div class="text-xs text-slate-500 mt-1">Type <span class="text-sky-400 font-bold">/help</span> to see available commands or type any coding prompt.</div>
+        </div>
+
+      </div>
+
+      <!-- Terminal Input Form -->
+      <form id="terminal-form" class="bg-slate-950 px-4 py-3 border-t border-slate-800 flex items-center gap-3">
+        <span class="font-mono text-emerald-400 font-bold select-none whitespace-nowrap">daedalus&gt;</span>
+        <input 
+          id="terminal-input" 
+          type="text" 
+          autocomplete="off" 
+          placeholder="Type /help or ask a question..." 
+          class="w-full bg-transparent font-mono text-slate-100 placeholder-slate-600 focus:outline-none text-sm sm:text-base"
+        />
+        <button type="submit" class="bg-sky-500/20 hover:bg-sky-500/30 text-sky-400 border border-sky-500/40 text-xs font-mono font-bold px-3 py-1.5 rounded-lg transition">
+          Run
+        </button>
+      </form>
+    </div>
+
+    <div class="mt-4 text-center text-xs text-slate-500">
+      <span>Looking to productize your own AI CLI? </span>
+      <a href="../landing.html" class="text-sky-400 underline font-semibold hover:text-sky-300">Get Daedalus-Lite Starter Kit for $19 →</a>
+    </div>
+
+  </main>
+
+  <script>
+    let currentModel = 'auto';
+    const outputEl = document.getElementById('terminal-output');
+    const inputEl = document.getElementById('terminal-input');
+    const formEl = document.getElementById('terminal-form');
+    const modelBadge = document.getElementById('active-model-badge');
+
+    function scrollToBottom() {
+      outputEl.scrollTop = outputEl.scrollHeight;
+    }
+
+    function appendUserPrompt(text) {
+      const div = document.createElement('div');
+      div.className = 'text-slate-100 flex items-start gap-2 pt-2';
+      div.innerHTML = `<span class="text-emerald-400 font-bold select-none">daedalus&gt;</span> <span>${escapeHtml(text)}</span>`;
+      outputEl.appendChild(div);
+      scrollToBottom();
+    }
+
+    function appendResponseBlock(htmlContent, metaStr = '') {
+      const div = document.createElement('div');
+      div.className = 'text-slate-300 space-y-1.5 pl-4 border-l-2 border-sky-500/40 my-2 whitespace-pre-wrap';
+      div.innerHTML = htmlContent;
+      if (metaStr) {
+        const meta = document.createElement('div');
+        meta.className = 'text-xs text-slate-500 font-mono mt-1 pt-1 border-t border-slate-800/40';
+        meta.textContent = metaStr;
+        div.appendChild(meta);
+      }
+      outputEl.appendChild(div);
+      scrollToBottom();
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    async function typeStreamResponse(text, metaStr) {
+      const div = document.createElement('div');
+      div.className = 'text-slate-300 space-y-1.5 pl-4 border-l-2 border-sky-500/40 my-2';
+      const textContainer = document.createElement('div');
+      textContainer.className = 'whitespace-pre-wrap font-mono text-sm leading-relaxed';
+      div.appendChild(textContainer);
+      outputEl.appendChild(div);
+
+      const lines = text.split('\n');
+      let accumulated = '';
+      for (let li = 0; li < lines.length; li++) {
+        const line = lines[li];
+        const words = line.split(' ');
+        for (let wi = 0; wi < words.length; wi++) {
+          accumulated += (wi === 0 && li > 0 ? '\n' : (wi === 0 ? '' : ' ')) + words[wi];
+          textContainer.innerHTML = formatMarkdown(accumulated);
+          scrollToBottom();
+          await new Promise(r => setTimeout(r, Math.floor(Math.random() * 25) + 15));
+        }
+      }
+
+      if (metaStr) {
+        const meta = document.createElement('div');
+        meta.className = 'text-xs text-slate-500 font-mono mt-2 pt-1 border-t border-slate-800/40';
+        meta.textContent = metaStr;
+        div.appendChild(meta);
+        scrollToBottom();
+      }
+    }
+
+    function formatMarkdown(text) {
+      // Basic syntax highlighter / formatter
+      let escaped = escapeHtml(text);
+      // Code blocks
+      escaped = escaped.replace(/```(\w+)?\n([\s\S]*?)```/g, (match, lang, code) => {
+        return `<pre class="bg-slate-950 p-3 rounded-lg border border-slate-800 text-sky-300 text-xs sm:text-sm my-2 overflow-x-auto"><code>${code}</code></pre>`;
+      });
+      // Inline code
+      escaped = escaped.replace(/`([^`]+)`/g, '<code class="text-sky-400 bg-slate-800/80 px-1.5 py-0.5 rounded text-xs">$1</code>');
+      return escaped;
+    }
+
+    function runPreset(text) {
+      inputEl.value = text;
+      handleInput(text);
+    }
+
+    async function handleInput(rawInput) {
+      const input = rawInput.trim();
+      if (!input) return;
+
+      appendUserPrompt(input);
+      inputEl.value = '';
+
+      if (input === '/help') {
+        const helpText = `Available commands:
+  <span class="text-sky-400">/help</span>                  - Show this help message
+  <span class="text-sky-400">/model &lt;modelName&gt;</span>     - Set the model for subsequent requests
+  <span class="text-sky-400">/clear</span>                 - Clear conversation history
+  <span class="text-sky-400">/exit</span>                  - Exit the REPL`;
+        appendResponseBlock(helpText);
+        return;
+      }
+
+      if (input.startsWith('/model')) {
+        const parts = input.split(' ');
+        if (parts.length < 2) {
+          appendResponseBlock(`<span class="text-amber-400">[WARN] Please specify a model name. Example: /model claude-sonnet-4-20250514</span>`);
+        } else {
+          currentModel = parts[1];
+          modelBadge.textContent = `model: ${currentModel}`;
+          appendResponseBlock(`<span class="text-emerald-400">Model set to: ${escapeHtml(currentModel)}</span>`);
+        }
+        return;
+      }
+
+      if (input === '/clear') {
+        outputEl.innerHTML = `
+          <div class="text-slate-400 pb-2 border-b border-slate-800/60">
+            <div class="text-sky-400 font-bold mb-1">Daedalus-Lite v1.0.0 (TypeScript ESM Starter Kit)</div>
+            <div class="text-xs text-slate-500">Conversation history cleared. Active model: <span class="text-sky-400">${escapeHtml(currentModel)}</span></div>
+          </div>`;
+        return;
+      }
+
+      if (input === '/exit') {
+        appendResponseBlock(`<span class="text-slate-400">Goodbye! Session closed.</span>`);
+        return;
+      }
+
+      // Simulated AI Responses
+      if (input.toLowerCase().includes('fibonacci')) {
+        const codeResponse = `Here is a recursive Fibonacci function in Python:
+
+\`\`\`python
+def fib(n):
+    if n <= 1:
+        return n
+    return fib(n-1) + fib(n-2)
+\`\`\`
+
+For better performance with larger values, use memoization or iteration.`;
+        const meta = `└ ${currentModel} · 0 tool(s) · 45 out · 1.1s · 40.9 tok/s`;
+        await typeStreamResponse(codeResponse, meta);
+        return;
+      }
+
+      if (input.toLowerCase().includes('router') || input.toLowerCase().includes('refactor')) {
+        const response = `Refactored \`src/router.ts\` to use priority fallback strategy with timeout circuit breakers:
+
+\`\`\`typescript
+export class InMemoryRouter {
+  private chain: ModelConfig[];
+
+  constructor(options: RouterOptions) {
+    this.chain = options.chain;
+  }
+
+  async dispatch(prompt: string): Promise<Response> {
+    for (const endpoint of this.chain) {
+      try {
+        return await this.callEndpoint(endpoint, prompt);
+      } catch (err) {
+        console.warn(\`Endpoint \${endpoint.name} failed, falling back...\`);
+      }
+    }
+    throw new Error('All model endpoints failed');
+  }
+}
+\`\`\`
+
+Optimized with zero dependencies using native Fetch API.`;
+        const meta = `└ ${currentModel} · 1 tool(s) · 120 out · 2.1s · 57.1 tok/s`;
+        await typeStreamResponse(response, meta);
+        return;
+      }
+
+      // Generic fallback simulation response
+      const genericResponse = `Received prompt: "${input}". 
+
+Daedalus-Lite processed this request through the multi-model router (\`${currentModel}\`).
+
+• **Execution time**: 350ms
+• **Dependencies**: 0 runtime dependencies
+• **Format**: Clean ESM TypeScript
+
+You can rebrand and extend this exact REPL logic for your own commercial products!`;
+      const meta = `└ ${currentModel} · 0 tool(s) · 52 out · 0.8s · 65.0 tok/s`;
+      await typeStreamResponse(genericResponse, meta);
+    }
+
+    formEl.addEventListener('submit', (e) => {
+      e.preventDefault();
+      handleInput(inputEl.value);
+    });
+
+    // Auto-focus input on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      inputEl.focus();
+    });
+  </script>
+</body>
+</html>
