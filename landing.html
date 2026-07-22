@@ -58,7 +58,7 @@
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(255, 255, 255, 0.12);
     }
-    html.dark .text-white, html.dark h1, html.dark h2, html.dark h3 {
+    html.dark h1, html.dark h2, html.dark h3 {
       color: #ffffff;
     }
     html.dark .text-slate-400 {
@@ -84,7 +84,7 @@
       border: 1px solid rgba(0, 0, 0, 0.1);
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     }
-    html:not(.dark) .text-white, html:not(.dark) h1, html:not(.dark) h2, html:not(.dark) h3 {
+    html:not(.dark) h1, html:not(.dark) h2, html:not(.dark) h3 {
       color: #0f172a;
     }
     html:not(.dark) .text-slate-400 {
@@ -111,8 +111,13 @@
       -webkit-text-fill-color: transparent;
     }
 
-    /* Ensure CTA buttons always have high-contrast bright text in dark & light mode */
-    a[data-gumroad-action="buy"], .cta-btn-bright {
+    /* Ensure CTA buttons always have crisp, high-contrast white text in both light & dark mode */
+    .cta-btn-primary, a[data-gumroad-action="buy"] {
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+      color: #ffffff !important;
+    }
+    .cta-btn-primary:hover, a[data-gumroad-action="buy"]:hover {
+      background: linear-gradient(135deg, #0369a1 0%, #075985 100%) !important;
       color: #ffffff !important;
     }
   </style>
