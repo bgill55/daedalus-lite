@@ -48,9 +48,10 @@ Daedalus-Lite gives you the **exact architecture** used by premium AI coding ass
 |---------|---------------|
 | **InMemory Router** | Routes to OpenAI, Anthropic, or local models (Ollama/LM Studio) with a unified response format |
 | **REPL Shell** | Interactive terminal with `/help`, `/model`, `/clear`, `/exit` |
-| **Zero Dependencies** | Pure native Node 20+ Fetch API. No third-party runtime bloat. |
+| **Clean Runtime** | Single runtime dependency (`dotenv`). No third-party bloat. |
 | **Local AI Ready** | Works with Ollama, LM Studio — no internet required |
 | **Rebrandable** | Change the name, colors, banner — it's yours |
+| **Turnkey Playbook** | Copy-paste launch templates for Hacker News, Reddit, and Twitter (`LAUNCH_PLAYBOOK.md`) |
 | **Sellable** | MIT + Branded Commercial license. Ship it. |
 
 ## How it works
