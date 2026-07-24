@@ -18,13 +18,14 @@
 <p align="center">
   <a href="#pricing">Pricing</a> •
   <a href="#what-you-get">What You Get</a> •
+  <a href="https://discord.gg/GPH2ZH57up" target="_blank">Discord Community</a> •
   <a href="#faq">FAQ</a>
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Node.js-20%2B-1E3A8A" alt="Node 20+"/>
+  <a href="https://discord.gg/GPH2ZH57up"><img src="https://img.shields.io/badge/Discord-Join%20Community-5865F2?logo=discord&logoColor=white" alt="Discord Community" /></a>
   <img src="https://img.shields.io/badge/license-MIT%20%2F%20Branded%20Commercial-F59E0B" alt="License"/>
-  <img src="https://img.shields.io/badge/dependencies-0-22c55e" alt="Zero Dependencies"/>
   <img src="https://img.shields.io/badge/TypeScript-5%2B-3178C6" alt="TypeScript"/>
 </p>
 
